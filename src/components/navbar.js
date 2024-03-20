@@ -1,0 +1,115 @@
+import Link from "next/link";
+import { useAuth } from "../contexts/authContext";
+import firebase from "../utils/firebase";
+import { useUserData } from "../contexts/userDataContext";
+import { Bars2Icon, UserCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import useWindowSize from "@/hooks/useWindowSize";
+import { useState } from "react";
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { currentUser } = useAuth();
+  const { userData } = useUserData();
+  const windowSize = useWindowSize();
+
+  const logoutHandler = () => {
+    firebase.auth().signOut();
+  };
+
+  return (
+    <>
+      <div className="navbar bg-base-100 flex justify-center items-center shadow-sm">
+        <div className="flex-1 max-w-[1600px] px-8 md:px-4">
+          <div className="cursor-pointer hidden md:block">
+            {isOpen ? (
+              <XMarkIcon width={24} height={24} onClick={() => setIsOpen(false)} />
+            ) : (
+              <Bars2Icon width={24} height={24} onClick={() => setIsOpen(true)} />
+            )}
+          </div>
+
+          <div className="flex-1 md:flex md:justify-center">
+            <Link href={"/"} className="text-xl font-semibold">
+              RoomAI
+            </Link>
+          </div>
+
+          <div className="flex-none flex items-center gap-16">
+            <div
+              className={`flex items-center gap-8 md:absolute md:left-1/2 md:-translate-x-1/2 md:w-[90%] md:border md:bg-white md:rounded-lg md:z-40 md:flex-col md:items-start md:gap-0 md:transition-all md:duration-300 ${
+                isOpen ? "md:top-20 md:opacity-100 md:visible" : "md:top-[70px] md:opacity-0 md:invisible"
+              }`}
+            >
+              <Link
+                href={"/my-rooms"}
+                className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                onClick={() => setIsOpen(false)}
+              >
+                My Rooms
+              </Link>
+              <Link
+                href={"/room-redesigner"}
+                className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                onClick={() => setIsOpen(false)}
+              >
+                Design
+              </Link>
+              {currentUser && (
+                <Link
+                  href={""}
+                  className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
+                  onClick={() => {
+                    logoutHandler();
+                    setIsOpen(false);
+                  }}
+                >
+                  Logout
+                </Link>
+              )}
+            </div>
+
+            {currentUser && (
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    {userData?.image ? (
+                      <img alt="Tailwind CSS Navbar component" src={userData.image} />
+                    ) : (
+                      <UserCircleIcon width={40} height={40} />
+                    )}
+                  </div>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                >
+                  {/* <li>
+                  <a className="py-2 text-base">Profile</a>
+                </li>
+                <li>
+                  <a className="py-2 text-base">Settings</a>
+                </li> */}
+                  <li>
+                    <a className="py-2 text-base" onClick={logoutHandler}>
+                      Logout
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+            {!currentUser && (
+              <Link href={"/login"} className="btn btn-primary text-white w-32">
+                Get Started
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {isOpen && <div className="fixed top-0 left-0 w-full h-screen z-30" onClick={() => setIsOpen(false)}></div>}
+    </>
+  );
+};
+
+export default Navbar;
