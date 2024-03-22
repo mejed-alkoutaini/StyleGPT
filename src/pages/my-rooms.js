@@ -8,6 +8,8 @@ import { useUserData } from "../contexts/userDataContext";
 import { AdjustmentsHorizontalIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import useWindowSize from "@/hooks/useWindowSize";
 import FullScreenLoader from "@/components/fullScreenLoader";
+import FullScreenModal from "@/components/fullScreenModal";
+import { FullScreenIcon } from "@/components/svgs";
 
 export default function MyRooms() {
   const { userData } = useUserData();
@@ -15,6 +17,8 @@ export default function MyRooms() {
   const [selectedTypeFilter, setSelectedTypeFilter] = useState(null);
   const [selectedThemeFilter, setSelectedThemeFilter] = useState(null);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [showFullScreen, setShowFullScreen] = useState(false);
+  const [imageToShow, setImageToShow] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const windowSize = useWindowSize();
 
@@ -39,78 +43,100 @@ export default function MyRooms() {
     }
   }, [windowSize]);
 
+  const fullScreenHandler = (image) => {
+    setImageToShow(JSON.parse(image?.after));
+    setShowFullScreen(true)
+  };
+
   if (isLoading) return <FullScreenLoader />;
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto py-16 px-8 md:px-4 md:py-8">
-      <h1 className="text-5xl font-semibold w-full pb-8 border-b-[1px] lg:text-4xl">My Rooms</h1>
+    <>
+      <div className="w-full max-w-[1600px] mx-auto py-16 px-8 md:px-4 md:py-8">
+        <h1 className="text-5xl font-semibold w-full pb-8 border-b-[1px] lg:text-4xl">My Rooms</h1>
 
-      <div className="flex mt-6 gap-12 lg:gap-8 md:flex-col">
-        <h2 className="font-medium hidden md:flex md:items-center max-w-20" onClick={() => setShowMobileFilters(true)}>
-          <AdjustmentsHorizontalIcon width={20} height={20} className="mr-2" />
-          Filters
-        </h2>
+        <div className="flex mt-6 gap-12 lg:gap-8 md:flex-col">
+          <h2
+            className="font-medium hidden md:flex md:items-center max-w-20"
+            onClick={() => setShowMobileFilters(true)}
+          >
+            <AdjustmentsHorizontalIcon width={20} height={20} className="mr-2" />
+            Filters
+          </h2>
 
-        <div
-          className={`flex flex-col border-r-[1px] w-56 transition-all lg:w-44 pr-4 md:fixed md:z-10 md:bg-white md:w-full md:min-h-screen md:top-0 md:left-0 md:px-4 md:pt-7 ${
-            showMobileFilters ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        >
-          <div className="flex items-center justify-between border-b-[1px] mb-4 pb-4">
-            <h2 className="flex items-center font-medium">
-              <AdjustmentsHorizontalIcon width={20} height={20} className="mr-2" />
-              Filters
-            </h2>
+          <div
+            className={`flex flex-col border-r-[1px] w-56 transition-all lg:w-44 pr-4 md:fixed md:z-10 md:bg-white md:w-full md:min-h-screen md:top-0 md:left-0 md:px-4 md:pt-7 ${
+              showMobileFilters ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
+          >
+            <div className="flex items-center justify-between border-b-[1px] mb-4 pb-4">
+              <h2 className="flex items-center font-medium">
+                <AdjustmentsHorizontalIcon width={20} height={20} className="mr-2" />
+                Filters
+              </h2>
 
-            <XMarkIcon width={24} height={24} onClick={() => setShowMobileFilters(false)} className="hidden md:block" />
+              <XMarkIcon
+                width={24}
+                height={24}
+                onClick={() => setShowMobileFilters(false)}
+                className="hidden md:block"
+              />
+            </div>
+
+            <ul className="menu gap-1 border-b-[1px] p-0 pb-4 mb-4 pr-4">
+              <li className="menu-title text-black font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
+                Room Type
+              </li>
+              {roomsTypes.map((type) => (
+                <li key={type.id}>
+                  <a
+                    className={` lg:text-[14px] py-[6px] px-[12px] ${
+                      selectedTypeFilter === type.id ? "bg-primary hover:bg-primary text-white" : ""
+                    }`}
+                    onClick={() => setSelectedTypeFilter(selectedTypeFilter === type.id ? null : type.id)}
+                  >
+                    {type.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <ul className="menu gap-1 p-0 pb-4 mb-4 pr-4">
+              <li className="menu-title text-black font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
+                Room Theme
+              </li>
+              {roomsThemes.map((theme) => (
+                <li key={theme.id}>
+                  <a
+                    className={`lg:text-[14px] py-[6px] px-[12px] ${
+                      selectedThemeFilter === theme.id ? "bg-primary hover:bg-primary text-white" : ""
+                    }`}
+                    onClick={() => setSelectedThemeFilter(selectedThemeFilter === theme.id ? null : theme.id)}
+                  >
+                    {theme.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <ul className="menu gap-1 border-b-[1px] p-0 pb-4 mb-4 pr-4">
-            <li className="menu-title text-black font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">Room Type</li>
-            {roomsTypes.map((type) => (
-              <li key={type.id}>
-                <a
-                  className={` lg:text-[14px] py-[6px] px-[12px] ${
-                    selectedTypeFilter === type.id ? "bg-primary hover:bg-primary text-white" : ""
-                  }`}
-                  onClick={() => setSelectedTypeFilter(selectedTypeFilter === type.id ? null : type.id)}
-                >
-                  {type.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <ul className="menu gap-1 p-0 pb-4 mb-4 pr-4">
-            <li className="menu-title text-black font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
-              Room Theme
-            </li>
-            {roomsThemes.map((theme) => (
-              <li key={theme.id}>
-                <a
-                  className={`lg:text-[14px] py-[6px] px-[12px] ${
-                    selectedThemeFilter === theme.id ? "bg-primary hover:bg-primary text-white" : ""
-                  }`}
-                  onClick={() => setSelectedThemeFilter(selectedThemeFilter === theme.id ? null : theme.id)}
-                >
-                  {theme.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex-1">
-          <div className="grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-2">
-            {roomsImages?.map((image, index) => (
-              <div key={index} className="relative aspect-square">
-                <div className="absolute top-0 left-0 w-full h-full skeleton rounded-lg opacity-30"></div>
-                <img src={image.after} className="absolute inset-0 w-full h-full object-cover rounded-lg" />
-              </div>
-            ))}
+          <div className="flex-1">
+            <div className="grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-2">
+              {roomsImages?.map((image, index) => (
+                <div key={index} className="relative aspect-square cursor-pointer" onClick={() => fullScreenHandler(image)}>
+                  <div className="absolute top-0 left-0 w-full h-full skeleton rounded-lg opacity-30"></div>
+                  <img
+                    src={JSON.parse(image.after)}
+                    className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <FullScreenModal active={showFullScreen} closeModalHandler={() => setShowFullScreen(false)} image={imageToShow} />
+    </>
   );
 }
 

@@ -13,6 +13,7 @@ import { uuidGenerator } from "@/utils/utils";
 import { toast } from "react-hot-toast";
 import DefaultLayout from "./defaultLayout";
 import { useUserData } from "../contexts/userDataContext";
+import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 
 export default function RoomDesigner(props) {
   const { userData } = useUserData();
@@ -216,21 +217,23 @@ export default function RoomDesigner(props) {
 
                     {/* Side by Side comparison */}
                     {comparison && (
-                      <div>
-                        <div className="diff aspect-[16/11]">
-                          <div className="diff-item-1">
-                            <div className="text-primary-content text-9xl font-black ">
-                              <img src={generatedImage} className="rounded-lg w-full h-full object-cover" />
-                            </div>
-                          </div>
-                          <div className="diff-item-2">
-                            <div className="text-9xl font-black ">
-                              <img src={previewImage} className="rounded-lg w-full h-full object-cover" />
-                            </div>
-                          </div>
-                          <div className="diff-resizer"></div>
-                        </div>
-                      </div>
+                      <ReactCompareSlider
+                        className="aspect-[16/11]"
+                        itemOne={
+                          <ReactCompareSliderImage
+                            src={generatedImage}
+                            alt="Image one"
+                            className="rounded-lg w-full h-full object-cover"
+                          />
+                        }
+                        itemTwo={
+                          <ReactCompareSliderImage
+                            src={previewImage}
+                            alt="Image two"
+                            className="rounded-lg w-full h-full object-cover"
+                          />
+                        }
+                      />
                     )}
 
                     <div className="mt-4 flex justify-end gap-4">

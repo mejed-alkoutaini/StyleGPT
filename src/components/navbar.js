@@ -16,7 +16,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar bg-base-100 flex justify-center items-center shadow-sm">
+      <div className="navbar bg-base-100 flex justify-center items-center shadow-sm z-[999]">
         <div className="flex-1 max-w-[1600px] px-8 md:px-4">
           <div className="cursor-pointer hidden md:block">
             {isOpen ? (
