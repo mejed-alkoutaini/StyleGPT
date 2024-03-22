@@ -1,20 +1,20 @@
 import { roomsThemes, roomsTypes } from "@/data/data";
-import Dropdown from "../components/dropdown";
+import Dropdown from "./dropdown";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
 import { generateRoomImage } from "@/utils/api";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
-import WithProtectedRoute from "../components/withProtectedRoute";
-import FullScreenModal from "../components/fullScreenModal";
-import { FullScreenIcon } from "../components/svgs";
+import WithProtectedRoute from "./withProtectedRoute";
+import FullScreenModal from "./fullScreenModal";
+import { FullScreenIcon } from "./svgs";
 import { storage } from "@/utils/firebase";
 import { uuidGenerator } from "@/utils/utils";
 import { toast } from "react-hot-toast";
-import DefaultLayout from "../components/defaultLayout";
+import DefaultLayout from "./defaultLayout";
 import { useUserData } from "../contexts/userDataContext";
 
-export default function RoomRedesigner() {
+export default function RoomDesigner(props) {
   const { userData } = useUserData();
   const [selectedRoomType, setSelectedRoomType] = useState(roomsTypes[0]);
   const [selectedTheme, setSelectedTheme] = useState(roomsThemes[0]);
@@ -110,7 +110,7 @@ export default function RoomRedesigner() {
         <div className="w-full flex justify-center">
           <div className="max-w-[1400px] flex justify-between items-center gap-0 lg:gap-10 flex-1 lg:flex-col">
             <div className="flex flex-col bg-white px-5 py-8 w-full max-w-96 rounded-xl lg:max-w-full">
-              <h1 className="text-3xl font-semibold lg:text-2xl md:text-xl">Redesign Your Room</h1>
+              <h1 className="text-3xl font-semibold lg:text-2xl md:text-xl">{props.title}</h1>
 
               <div className="mt-12 lg:mt-6">
                 <h4 className="mb-1 lg:text-sm">Room Type</h4>
@@ -275,11 +275,3 @@ export default function RoomRedesigner() {
     </>
   );
 }
-
-RoomRedesigner.getLayout = function getLayout(page) {
-  return (
-    <WithProtectedRoute>
-      <DefaultLayout>{page}</DefaultLayout>
-    </WithProtectedRoute>
-  );
-};

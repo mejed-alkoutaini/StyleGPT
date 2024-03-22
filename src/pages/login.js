@@ -6,7 +6,7 @@ import { useState } from "react";
 import { isValidEmail, isValidPassword } from "@/utils/utils";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
-import { isUserExist } from "@/utils/api";
+import { createUser, isUserExist } from "@/utils/api";
 import Navbar from "../components/navbar";
 
 const Login = () => {
@@ -84,6 +84,7 @@ const Login = () => {
 
         if (userExist) {
           router.push("/");
+
           return;
         }
 

@@ -17,8 +17,13 @@ const DefaultLayout = (props) => {
     try {
       setIsLoading(true);
 
-      const userData = await getUser(currentUser?.uid);
-      setUserData(userData);
+      const userData = await getUser(currentUser?.uid)
+        .then((userData) => {
+          setUserData(userData);
+        })
+        .catch((e) => {
+          toast.error(e.message);
+        });
 
       setIsLoading(false);
     } catch (e) {

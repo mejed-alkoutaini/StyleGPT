@@ -3,14 +3,12 @@ import { useAuth } from "../contexts/authContext";
 import firebase from "../utils/firebase";
 import { useUserData } from "../contexts/userDataContext";
 import { Bars2Icon, UserCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import useWindowSize from "@/hooks/useWindowSize";
 import { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentUser } = useAuth();
   const { userData } = useUserData();
-  const windowSize = useWindowSize();
 
   const logoutHandler = () => {
     firebase.auth().signOut();
@@ -48,7 +46,7 @@ const Navbar = () => {
                 My Rooms
               </Link>
               <Link
-                href={"/room-redesigner"}
+                href={"/room-designer"}
                 className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
                 onClick={() => setIsOpen(false)}
               >
