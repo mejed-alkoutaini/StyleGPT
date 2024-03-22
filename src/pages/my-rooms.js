@@ -44,8 +44,8 @@ export default function MyRooms() {
   }, [windowSize]);
 
   const fullScreenHandler = (image) => {
-    setImageToShow(JSON.parse(image?.after));
-    setShowFullScreen(true)
+    setImageToShow(image);
+    setShowFullScreen(true);
   };
 
   if (isLoading) return <FullScreenLoader />;
@@ -122,7 +122,11 @@ export default function MyRooms() {
           <div className="flex-1">
             <div className="grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-2">
               {roomsImages?.map((image, index) => (
-                <div key={index} className="relative aspect-square cursor-pointer" onClick={() => fullScreenHandler(image)}>
+                <div
+                  key={index}
+                  className="relative aspect-square cursor-pointer"
+                  onClick={() => fullScreenHandler(image)}
+                >
                   <div className="absolute top-0 left-0 w-full h-full skeleton rounded-lg opacity-30"></div>
                   <img
                     src={JSON.parse(image.after)}
@@ -135,7 +139,12 @@ export default function MyRooms() {
         </div>
       </div>
 
-      <FullScreenModal active={showFullScreen} closeModalHandler={() => setShowFullScreen(false)} image={imageToShow} />
+      <FullScreenModal
+        active={showFullScreen}
+        closeModalHandler={() => setShowFullScreen(false)}
+        imageAfter={imageToShow && JSON.parse(imageToShow?.after)}
+        imageBefore={imageToShow && imageToShow.before}
+      />
     </>
   );
 }

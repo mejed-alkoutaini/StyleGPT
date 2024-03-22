@@ -273,7 +273,8 @@ export default function RoomDesigner(props) {
       <FullScreenModal
         active={showFullScreen}
         closeModalHandler={() => setShowFullScreen(false)}
-        image={generatedImage}
+        imageAfter={generatedImage}
+        imageBefore={previewImage}
       />
     </>
   );
