@@ -76,10 +76,14 @@ export default function RoomDesigner(props) {
       const imageUrl = await uploadImageToFirebase(selectedFile);
 
       // Generate new room image
-      const result = await generateRoomImage(userData.uid, selectedRoomType.id, selectedTheme.id, imageUrl);
-
-      toast.success("Image saved to your rooms");
-      setGeneratedImage(result.image);
+      const result = await generateRoomImage(userData.uid, selectedRoomType.id, selectedTheme.id, imageUrl)
+        .then(({ image }) => {
+          setGeneratedImage(image);
+          toast.success("Image saved to your gallery");
+        })
+        .catch(({ error }) => {
+          toast.error(error);
+        });
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -87,6 +91,11 @@ export default function RoomDesigner(props) {
       setComparison(false);
     }
   };
+
+  const publishHandler =()=>{
+
+    
+  }
 
   const downloadHandler = async () => {
     try {
@@ -245,6 +254,9 @@ export default function RoomDesigner(props) {
                         }}
                       >
                         New Room
+                      </button>
+                      <button className="btn btn-primary text-white px-6" onClick={publishHandler}>
+                        Publish
                       </button>
                       <button className="btn btn-primary text-white px-6" onClick={downloadHandler}>
                         Download

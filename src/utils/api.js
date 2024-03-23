@@ -19,7 +19,7 @@ export const generateRoomImage = async (uid, roomType, roomTheme, imageUrl) => {
     return result.data;
   } catch (error) {
     console.error("Error generating new image", error);
-    throw error;
+    throw error.response.data;
   }
 };
 
@@ -39,7 +39,7 @@ export const createUser = async (uid, email, image, name) => {
     return result.data;
   } catch (error) {
     console.error("Error creating new user", error);
-    throw error;
+    throw error.response.data;
   }
 };
 
@@ -53,7 +53,7 @@ export const getUser = async (uid) => {
     return result.data;
   } catch (error) {
     console.error("Error getting user data", error);
-    throw error;
+    throw error.response.data;
   }
 };
 
@@ -80,6 +80,38 @@ export const getUserImages = async (uid) => {
     return result.data;
   } catch (error) {
     console.error("Error getting user images", error);
-    throw error;
+    throw error.response.data;
+  }
+};
+
+export const getExploreImages = async (uid) => {
+  try {
+    const result = await axios({
+      url: `${HOST}/api/index`,
+      method: "GET",
+    });
+
+    return result.data;
+  } catch (error) {
+    console.error("Error getting images", error);
+    throw error.response.data;
+  }
+};
+
+export const publishAnImage = async (id, published) => {
+  try {
+    const result = await axios({
+      url: `${HOST}/api/publish`,
+      method: "POST",
+      data: {
+        id,
+        published: true,
+      },
+    });
+
+    return result.data;
+  } catch (error) {
+    console.error("Error publishing image", error);
+    throw error.response.data;
   }
 };

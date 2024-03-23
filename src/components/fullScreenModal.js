@@ -25,26 +25,18 @@ const FullScreenModal = ({ active, closeModalHandler, imageBefore, imageAfter })
         </div>
         <XCircleIcon width={30} height={30} color="white" onClick={closeModalHandler} />
       </div>
-      
-      {!comparison && <img src={imageAfter} className="h-[88vh] md:w-[100vw] md:h-auto object-contain" />}
+
+      {!comparison && (
+        <div>
+          <img src={imageAfter} className="fullScreenImage" />
+        </div>
+      )}
 
       {comparison && (
         <ReactCompareSlider
-          className="react-compare-slider"
-          itemOne={
-            <ReactCompareSliderImage
-              src={imageAfter}
-              alt="Image one"
-              className="h-[90vh] md:w-[100vw] md:h-auto object-contain"
-            />
-          }
-          itemTwo={
-            <ReactCompareSliderImage
-              src={imageBefore}
-              alt="Image two"
-              className="h-[90vh] md:w-[100vw] md:h-auto object-contain"
-            />
-          }
+          style={{ overflow: "visible" }}
+          itemOne={<ReactCompareSliderImage src={imageBefore} alt="Image one" className="fullScreenImage" />}
+          itemTwo={<ReactCompareSliderImage src={imageAfter} alt="Image two" className="fullScreenImage" />}
         />
       )}
 

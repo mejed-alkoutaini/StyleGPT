@@ -32,6 +32,11 @@ const DefaultLayout = (props) => {
   };
 
   useEffect(() => {
+    if (!currentUser) {
+      setIsLoading(false);
+      return;
+    }
+    
     getUserData();
   }, []);
 
