@@ -28,7 +28,7 @@ const Navbar = () => {
 
           <div className="flex-1 md:flex md:justify-center">
             <Link href={"/"} className="text-xl font-semibold">
-              RoomAI
+              StyleGPT
             </Link>
           </div>
 
