@@ -2,7 +2,7 @@ import { roomsThemes, roomsTypes } from "@/data/data";
 import Dropdown from "./dropdown";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
-import { generateRoomImage } from "@/utils/api";
+import { generateRoomImage, publishImage } from "@/utils/api";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import WithProtectedRoute from "./withProtectedRoute";
@@ -25,6 +25,7 @@ export default function RoomDesigner(props) {
   const [generatedImage, setGeneratedImage] = useState(null);
   const [comparison, setComparison] = useState(false);
   const [showFullScreen, setShowFullScreen] = useState(false);
+  const [isPublishing, setIsPublishing] = useState(false);
 
   const selectImageHandler = (file) => {
     if (file) {
@@ -79,7 +80,7 @@ export default function RoomDesigner(props) {
       const result = await generateRoomImage(userData.uid, selectedRoomType.id, selectedTheme.id, imageUrl)
         .then(({ image }) => {
           setGeneratedImage(image);
-          toast.success("Image saved to your gallery");
+          toast.success("Image saved to your gallery.");
         })
         .catch(({ error }) => {
           toast.error(error);
@@ -92,10 +93,18 @@ export default function RoomDesigner(props) {
     }
   };
 
-  const publishHandler =()=>{
+  const publishHandler = async () => {
+    setIsPublishing(true);
 
-    
-  }
+    try {
+      await publishImage(generatedImage.id);
+      toast.success("Image published to Explore.");
+    } catch ({ error }) {
+      toast.error(error);
+    } finally {
+      setIsPublishing(false);
+    }
+  };
 
   const downloadHandler = async () => {
     try {
@@ -255,9 +264,12 @@ export default function RoomDesigner(props) {
                       >
                         New Room
                       </button>
+
                       <button className="btn btn-primary text-white px-6" onClick={publishHandler}>
-                        Publish
+                        {!isPublishing && "Publish"}
+                        {isPublishing && <span className="loading loading-spinner"></span>}
                       </button>
+
                       <button className="btn btn-primary text-white px-6" onClick={downloadHandler}>
                         Download
                       </button>

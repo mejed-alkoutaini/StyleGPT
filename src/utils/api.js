@@ -98,7 +98,7 @@ export const getExploreImages = async (uid) => {
   }
 };
 
-export const publishAnImage = async (id, published) => {
+export const publishImage = async (id) => {
   try {
     const result = await axios({
       url: `${HOST}/api/publish`,
