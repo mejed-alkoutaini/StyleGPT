@@ -18,56 +18,80 @@ const Navbar = () => {
     <>
       <div className="navbar bg-base-100 flex justify-center items-center shadow-sm z-[999]">
         <div className="flex-1 max-w-[1600px] px-8 md:px-4">
-          <div className="cursor-pointer hidden md:block">
-            {isOpen ? (
-              <XMarkIcon width={24} height={24} onClick={() => setIsOpen(false)} />
-            ) : (
-              <Bars2Icon width={24} height={24} onClick={() => setIsOpen(true)} />
-            )}
-          </div>
-
-          <div className="flex-1 md:flex md:justify-center">
+          <div className="flex-1 md:flex">
             <Link href={"/"} className="text-xl font-semibold">
               StyleGPT
             </Link>
           </div>
 
-          <div className="flex-none flex items-center gap-16">
+          <div className="flex-none flex items-center gap-8">
             <div
               className={`flex items-center gap-8 md:absolute md:left-1/2 md:-translate-x-1/2 md:w-[90%] md:border md:bg-white md:rounded-lg md:z-40 md:flex-col md:items-start md:gap-0 md:transition-all md:duration-300 ${
                 isOpen ? "md:top-20 md:opacity-100 md:visible" : "md:top-[70px] md:opacity-0 md:invisible"
               }`}
             >
-              <Link
-                href={"/my-rooms"}
-                className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                onClick={() => setIsOpen(false)}
-              >
-                My Rooms
-              </Link>
-              <Link
-                href={"/room-designer"}
-                className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                onClick={() => setIsOpen(false)}
-              >
-                Design
-              </Link>
-              {currentUser && (
-                <Link
-                  href={""}
-                  className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
-                  onClick={() => {
-                    logoutHandler();
-                    setIsOpen(false);
-                  }}
-                >
-                  Logout
-                </Link>
+              {currentUser ? (
+                <>
+                  <Link
+                    href={"/"}
+                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
+                    Explore
+                  </Link>
+                  <Link
+                    href={"/my-rooms"}
+                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    My Rooms
+                  </Link>
+                  <Link
+                    href={"/room-designer"}
+                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Design
+                  </Link>
+                  <Link
+                    href={""}
+                    className=" text-base md:px-4 md:py-3  md:w-full hidden md:block"
+                    onClick={() => {
+                      logoutHandler();
+                      setIsOpen(false);
+                    }}
+                  >
+                    Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href={"/"}
+                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
+                    Explore
+                  </Link>
+                  <Link
+                    href={"/login"}
+                    className="text-base md:px-4 md:py-3  md:w-full hidden md:block"
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                  >
+                    Get Started
+                  </Link>
+                </>
               )}
             </div>
 
             {currentUser && (
-              <div className="dropdown dropdown-end">
+              <div className="dropdown dropdown-end ">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
                     {userData?.image ? (
@@ -97,10 +121,18 @@ const Navbar = () => {
             )}
 
             {!currentUser && (
-              <Link href={"/login"} className="btn btn-primary text-white w-32">
+              <Link href={"/login"} className="btn btn-primary text-white w-32 md:hidden">
                 Get Started
               </Link>
             )}
+
+            <div className="cursor-pointer hidden md:block">
+              {isOpen ? (
+                <XMarkIcon width={24} height={24} onClick={() => setIsOpen(false)} />
+              ) : (
+                <Bars2Icon width={24} height={24} onClick={() => setIsOpen(true)} />
+              )}
+            </div>
           </div>
         </div>
       </div>
