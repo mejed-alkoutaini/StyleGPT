@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { getUserImages } from "@/utils/api";
 import { useUserData } from "../contexts/userDataContext";
 
-import { AdjustmentsHorizontalIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon, PhotoIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import useWindowSize from "@/hooks/useWindowSize";
 import FullScreenLoader from "@/components/fullScreenLoader";
 import FullScreenModal from "@/components/fullScreenModal";
 import { FullScreenIcon } from "@/components/svgs";
+import Link from "next/link";
 
 export default function MyRooms() {
   const { userData } = useUserData();
@@ -99,7 +100,7 @@ export default function MyRooms() {
             </div>
 
             <ul className="menu gap-1 border-b-[1px] p-0 pb-4 mb-4 pr-4">
-              <li className="menu-title text-black font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
+              <li className="menu-title text-primary font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
                 Room Type
               </li>
               {roomsTypes.map((type) => (
@@ -116,7 +117,7 @@ export default function MyRooms() {
               ))}
             </ul>
             <ul className="menu gap-1 p-0 pb-4 mb-4 pr-4">
-              <li className="menu-title text-black font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
+              <li className="menu-title text-primary font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
                 Room Theme
               </li>
               {roomsThemes.map((theme) => (
@@ -150,6 +151,29 @@ export default function MyRooms() {
                 </div>
               ))}
             </div>
+
+            {roomsImages.length === 0 && (
+              <div className="flex-1 flex flex-col items-center justify-center py-16">
+                <PhotoIcon color="#0d9488" width={60} height={60} />
+                <h4 className="text-3xl font-medium my-3">No images created yet.</h4>
+                <p className="mb-6">Looks like you haven't created any images yet. Start creating to see them here!</p>
+                <Link href={"/room-designer"}>
+                  <button className="btn btn-primary text-white px-6">Start Now</button>
+                </Link>
+              </div>
+            )}
+            {roomsImages.length > 0 && filteredRoomsImages.length === 0 && (
+              <div className="flex-1 flex flex-col items-center justify-center py-16">
+                <PhotoIcon color="#0d9488" width={90} height={90} />
+                <h4 className="text-3xl font-medium my-3">No images match your filters.</h4>
+                <p className="mb-6 max-w-xl text-center">
+                  We couldn't find any images matching your filters. Try adjusting your filters or create something new!
+                </p>
+                <Link href={"/room-designer"}>
+                  <button className="btn btn-primary text-white px-6">Start Now</button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

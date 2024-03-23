@@ -254,7 +254,7 @@ export default function RoomDesigner(props) {
                       />
                     )}
 
-                    <div className="mt-4 flex justify-end gap-4">
+                    <div className="mt-4 flex justify-end gap-4 flex-wrap">
                       <button
                         className="btn btn-primary text-white px-6"
                         onClick={() => {
@@ -280,7 +280,7 @@ export default function RoomDesigner(props) {
                         <span className="label-text">Side by Side Comparison</span>
                         <input
                           type="checkbox"
-                          className="toggle"
+                          className="toggle toggle-primary"
                           checked={comparison}
                           onChange={() => setComparison(!comparison)}
                         />

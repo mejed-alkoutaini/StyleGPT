@@ -17,7 +17,7 @@ const FullScreenModal = ({ active, closeModalHandler, imageBefore, imageAfter })
             <span className="label-text text-white text-right">Side by Side Comparison</span>
             <input
               type="checkbox"
-              className="toggle"
+              className="toggle toggle-primary"
               checked={comparison}
               onChange={() => setComparison(!comparison)}
             />
