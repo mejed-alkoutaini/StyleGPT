@@ -13,7 +13,8 @@ import { FullScreenIcon } from "@/components/svgs";
 
 export default function MyRooms() {
   const { userData } = useUserData();
-  const [roomsImages, setRoomsImages] = useState();
+  const [roomsImages, setRoomsImages] = useState([]);
+  const [filteredRoomsImages, setFilteredRoomsImages] = useState([]);
   const [selectedTypeFilter, setSelectedTypeFilter] = useState(null);
   const [selectedThemeFilter, setSelectedThemeFilter] = useState(null);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
@@ -48,12 +49,26 @@ export default function MyRooms() {
     setShowFullScreen(true);
   };
 
+  useEffect(() => {
+    const filterImages = () => {
+      const filteredImages = roomsImages.filter(
+        (image) =>
+          (!selectedThemeFilter || image.theme === selectedThemeFilter) &&
+          (!selectedTypeFilter || image.type === selectedTypeFilter)
+      );
+
+      setFilteredRoomsImages(filteredImages);
+    };
+
+    filterImages();
+  }, [roomsImages, selectedThemeFilter, selectedTypeFilter]);
+
   if (isLoading) return <FullScreenLoader />;
 
   return (
     <>
       <div className="w-full max-w-[1600px] mx-auto py-16 px-8 md:px-4 md:py-8">
-        <h1 className="text-5xl font-semibold w-full pb-8 border-b-[1px] lg:text-4xl">My Rooms</h1>
+        <h1 className="text-5xl font-semibold w-full pb-8 border-b-[1px] lg:text-4xl">MY ROOMS</h1>
 
         <div className="flex mt-6 gap-12 lg:gap-8 md:flex-col">
           <h2
@@ -121,7 +136,7 @@ export default function MyRooms() {
 
           <div className="flex-1">
             <div className="grid grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-2">
-              {roomsImages?.map((image, index) => (
+              {filteredRoomsImages?.map((image, index) => (
                 <div
                   key={index}
                   className="relative aspect-square cursor-pointer"
