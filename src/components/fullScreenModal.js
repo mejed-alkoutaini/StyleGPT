@@ -1,9 +1,39 @@
-import { XCircleIcon } from "@heroicons/react/24/outline";
+import { publishImage } from "@/utils/api";
+import { XCircleIcon, ArrowDownCircleIcon, CloudArrowUpIcon, ArrowsRightLeftIcon } from "@heroicons/react/24/outline";
+import axios from "axios";
 import { useState } from "react";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
+import { toast } from "react-hot-toast";
 
-const FullScreenModal = ({ active, closeModalHandler, imageBefore, imageAfter }) => {
+const FullScreenModal = (props) => {
+  const { active, closeModalHandler, imageBefore, imageAfter, imageId, disableDownloading, disablePublishing } = props;
   const [comparison, setComparison] = useState(true);
+
+  const publishHandler = async () => {
+    try {
+      await publishImage(imageId);
+      toast.success("Image published to Explore.");
+    } catch ({ error }) {
+      toast.error(error);
+    }
+  };
+
+  const downloadHandler = async () => {
+    try {
+      const response = await axios.get(imageAfter, { responseType: "blob" });
+      const blob = response.data;
+
+      const blobUrl = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = blobUrl;
+      anchor.download = `Room Image`;
+      anchor.click();
+
+      URL.revokeObjectURL(blobUrl);
+    } catch (e) {
+      toast.error("Error downloading image");
+    }
+  };
 
   return (
     <div
@@ -11,19 +41,26 @@ const FullScreenModal = ({ active, closeModalHandler, imageBefore, imageAfter })
         active ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
     >
-      <div className="flex items-center gap-8 absolute top-4 right-8 cursor-pointer z-50">
-        <div className="form-control">
-          <label className="label cursor-pointer justify-end gap-4">
-            <span className="label-text text-white text-right">Side by Side Comparison</span>
-            <input
-              type="checkbox"
-              className="toggle toggle-primary"
-              checked={comparison}
-              onChange={() => setComparison(!comparison)}
-            />
-          </label>
+      <div className="flex items-center gap-6 absolute top-0 right-0 py-2 px-6 z-50 bg-teal-600 rounded-bl-lg">
+        {!disablePublishing && (
+          <div className="tooltip tooltip-bottom cursor-pointer" data-tip="Publish">
+            <CloudArrowUpIcon width={30} height={30} color="white" onClick={publishHandler} />
+          </div>
+        )}
+
+        <div className="tooltip tooltip-bottom cursor-pointer" data-tip="Side by Side Comparison">
+          <ArrowsRightLeftIcon width={24} height={24} color="white" onClick={() => setComparison(!comparison)} />
         </div>
-        <XCircleIcon width={30} height={30} color="white" onClick={closeModalHandler} />
+
+        {!disableDownloading && (
+          <div className="tooltip tooltip-bottom cursor-pointer" data-tip="Download">
+            <ArrowDownCircleIcon width={30} height={30} color="white" onClick={downloadHandler} />
+          </div>
+        )}
+
+        <div className="tooltip tooltip-bottom cursor-pointer" data-tip="Close">
+          <XCircleIcon width={30} height={30} color="white" onClick={closeModalHandler} />
+        </div>
       </div>
 
       {!comparison && (

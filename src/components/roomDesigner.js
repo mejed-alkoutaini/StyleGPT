@@ -78,7 +78,7 @@ export default function RoomDesigner(props) {
 
       // Generate new room image
       const result = await generateRoomImage(userData.uid, selectedRoomType.id, selectedTheme.id, imageUrl)
-        .then(({ image }) => {
+        .then((image) => {
           setGeneratedImage(image);
           toast.success("Image saved to your gallery.");
         })
@@ -108,7 +108,7 @@ export default function RoomDesigner(props) {
 
   const downloadHandler = async () => {
     try {
-      const response = await axios.get(generatedImage, { responseType: "blob" });
+      const response = await axios.get(generatedImage.image, { responseType: "blob" });
       const blob = response.data;
 
       const blobUrl = URL.createObjectURL(blob);
@@ -229,7 +229,7 @@ export default function RoomDesigner(props) {
                         >
                           <FullScreenIcon /> Fullscreen
                         </div>
-                        <img src={generatedImage} className="rounded-lg w-full h-full object-cover" />
+                        <img src={generatedImage.image} className="rounded-lg w-full h-full object-cover" />
                       </div>
                     )}
 
@@ -239,14 +239,14 @@ export default function RoomDesigner(props) {
                         className="aspect-[16/11]"
                         itemOne={
                           <ReactCompareSliderImage
-                            src={generatedImage}
+                            src={previewImage}
                             alt="Image one"
                             className="rounded-lg w-full h-full object-cover"
                           />
                         }
                         itemTwo={
                           <ReactCompareSliderImage
-                            src={previewImage}
+                            src={generatedImage.image}
                             alt="Image two"
                             className="rounded-lg w-full h-full object-cover"
                           />
@@ -297,7 +297,7 @@ export default function RoomDesigner(props) {
       <FullScreenModal
         active={showFullScreen}
         closeModalHandler={() => setShowFullScreen(false)}
-        imageAfter={generatedImage}
+        imageAfter={generatedImage?.image}
         imageBefore={previewImage}
       />
     </>

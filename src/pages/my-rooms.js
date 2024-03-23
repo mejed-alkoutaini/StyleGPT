@@ -145,7 +145,7 @@ export default function MyRooms() {
                 >
                   <div className="absolute top-0 left-0 w-full h-full skeleton rounded-lg opacity-30"></div>
                   <img
-                    src={JSON.parse(image.after)}
+                    src={image.after}
                     className="absolute inset-0 w-full h-full object-cover rounded-lg"
                   />
                 </div>
@@ -155,8 +155,10 @@ export default function MyRooms() {
             {roomsImages.length === 0 && (
               <div className="flex-1 flex flex-col items-center justify-center py-16">
                 <PhotoIcon color="#0d9488" width={60} height={60} />
-                <h4 className="text-3xl font-medium my-3">No images created yet.</h4>
-                <p className="mb-6">Looks like you haven't created any images yet. Start creating to see them here!</p>
+                <h4 className="text-3xl font-medium my-3 text-center">No images created yet.</h4>
+                <p className="mb-6 text-centerz">
+                  Looks like you haven't created any images yet. Start creating to see them here!
+                </p>
                 <Link href={"/room-designer"}>
                   <button className="btn btn-primary text-white px-6">Start Now</button>
                 </Link>
@@ -165,7 +167,7 @@ export default function MyRooms() {
             {roomsImages.length > 0 && filteredRoomsImages.length === 0 && (
               <div className="flex-1 flex flex-col items-center justify-center py-16">
                 <PhotoIcon color="#0d9488" width={90} height={90} />
-                <h4 className="text-3xl font-medium my-3">No images match your filters.</h4>
+                <h4 className="text-3xl font-medium my-3 text-center">No images match your filters.</h4>
                 <p className="mb-6 max-w-xl text-center">
                   We couldn't find any images matching your filters. Try adjusting your filters or create something new!
                 </p>
@@ -181,8 +183,9 @@ export default function MyRooms() {
       <FullScreenModal
         active={showFullScreen}
         closeModalHandler={() => setShowFullScreen(false)}
-        imageAfter={imageToShow && JSON.parse(imageToShow?.after)}
+        imageAfter={imageToShow && imageToShow?.after}
         imageBefore={imageToShow && imageToShow.before}
+        imageId={imageToShow?.id}
       />
     </>
   );
