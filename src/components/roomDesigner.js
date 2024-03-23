@@ -53,6 +53,7 @@ export default function RoomDesigner(props) {
 
       // Get the download URL
       const url = await storage.ref("rooms").child(fileName).getDownloadURL();
+      
       return url;
     } catch (error) {
       toast.error("Failed to upload image. Please check your file and try again.");
@@ -299,6 +300,7 @@ export default function RoomDesigner(props) {
         closeModalHandler={() => setShowFullScreen(false)}
         imageAfter={generatedImage?.image}
         imageBefore={previewImage}
+        imageId={generatedImage?.id}
       />
     </>
   );
