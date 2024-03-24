@@ -89,7 +89,21 @@ export const getUserImages = async (uid) => {
 export const getExploreImages = async (uid) => {
   try {
     const result = await axios({
-      url: `${HOST}/api/index`,
+      url: `${HOST}/api/explore`,
+      method: "GET",
+    });
+
+    return result.data;
+  } catch (error) {
+    console.error("Error getting images", error);
+    throw error.response.data;
+  }
+};
+
+export const getAdminExploreImages = async (uid) => {
+  try {
+    const result = await axios({
+      url: `${HOST}/api/admin/explore`,
       method: "GET",
     });
 
@@ -104,6 +118,24 @@ export const publishImage = async (id, published) => {
   try {
     const result = await axios({
       url: `${HOST}/api/publish`,
+      method: "POST",
+      data: {
+        id,
+        published,
+      },
+    });
+
+    return result.data;
+  } catch (error) {
+    console.error("Error publishing image", error);
+    throw error.response.data;
+  }
+};
+
+export const adminPublishImage = async (id, published) => {
+  try {
+    const result = await axios({
+      url: `${HOST}/api/admin/publish`,
       method: "POST",
       data: {
         id,

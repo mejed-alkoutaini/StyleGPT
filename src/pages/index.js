@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   if (isLoading) return <FullScreenLoader />;
-
+  
   return (
     <>
       <div className="w-full max-w-[1600px] mx-auto py-16 px-8 md:px-4 md:py-8">
@@ -42,7 +42,7 @@ export default function Home() {
             <div className="grid grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-2">
               {roomsImages?.map((image, index) => (
                 <div
-                  key={index}
+                  key={image.after}
                   className="relative aspect-square cursor-pointer"
                   onClick={() => fullScreenHandler(image)}
                 >
