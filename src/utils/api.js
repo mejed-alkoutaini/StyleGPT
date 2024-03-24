@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const HOST = process.env.NEXT_PUBLIC_HOST;
+const ENV = process.env.NEXT_PUBLIC_ENV;
 
 export const generateRoomImage = async (uid, roomType, roomTheme, imageUrl) => {
   try {
@@ -13,6 +14,7 @@ export const generateRoomImage = async (uid, roomType, roomTheme, imageUrl) => {
         roomTheme,
         image: imageUrl,
         resolution: "512",
+        test: ENV === "development",
       },
     });
 
@@ -98,14 +100,14 @@ export const getExploreImages = async (uid) => {
   }
 };
 
-export const publishImage = async (id) => {
+export const publishImage = async (id, published) => {
   try {
     const result = await axios({
       url: `${HOST}/api/publish`,
       method: "POST",
       data: {
         id,
-        published: true,
+        published,
       },
     });
 

@@ -17,14 +17,14 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar bg-base-100 flex justify-center items-center shadow-sm z-[999]">
-        <div className="flex-1 max-w-[1600px] px-8 md:px-4">
+        <div className="flex-1 max-w-[1600px] px-8 md:px-2">
           <div className="flex-1 md:flex">
             <Link href={"/"} className="text-xl font-semibold">
               StyleGPT
             </Link>
           </div>
 
-          <div className="flex-none flex items-center gap-8">
+          <div className="flex-none flex items-center gap-8 md:gap-4">
             <div
               className={`flex items-center gap-8 md:absolute md:left-1/2 md:-translate-x-1/2 md:w-[90%] md:border md:bg-white md:rounded-lg md:z-40 md:flex-col md:items-start md:gap-0 md:transition-all md:duration-300 ${
                 isOpen ? "md:top-20 md:opacity-100 md:visible" : "md:top-[70px] md:opacity-0 md:invisible"
@@ -91,33 +91,39 @@ const Navbar = () => {
             </div>
 
             {currentUser && (
-              <div className="dropdown dropdown-end ">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    {userData?.image ? (
-                      <img alt="Tailwind CSS Navbar component" src={userData.image} />
-                    ) : (
-                      <UserCircleIcon width={40} height={40} />
-                    )}
-                  </div>
+              <>
+                <div className="border-[1px] rounded-md py-2 px-4 font-medium text-teal-600 md:px-2 text-sm">
+                  {userData.credit} Credits
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-                >
-                  {/* <li>
+
+                <div className="dropdown dropdown-end ">
+                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      {userData?.image ? (
+                        <img alt="Tailwind CSS Navbar component" src={userData.image} />
+                      ) : (
+                        <UserCircleIcon width={40} height={40} />
+                      )}
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  >
+                    {/* <li>
                   <a className="py-2 text-base">Profile</a>
-                </li>
-                <li>
+                  </li>
+                  <li>
                   <a className="py-2 text-base">Settings</a>
                 </li> */}
-                  <li>
-                    <a className="py-2 text-base" onClick={logoutHandler}>
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
+                    <li>
+                      <a className="py-2 text-base" onClick={logoutHandler}>
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </>
             )}
 
             {!currentUser && (

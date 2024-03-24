@@ -2,15 +2,15 @@ import WithProtectedRoute from "../components/withProtectedRoute";
 import DefaultLayout from "../components/defaultLayout";
 import { roomsThemes, roomsTypes } from "@/data/data";
 import { useEffect, useState } from "react";
-import { getUserImages } from "@/utils/api";
+import { getUserImages, publishImage } from "@/utils/api";
 import { useUserData } from "../contexts/userDataContext";
-
 import { AdjustmentsHorizontalIcon, PhotoIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import useWindowSize from "@/hooks/useWindowSize";
 import FullScreenLoader from "@/components/fullScreenLoader";
 import FullScreenModal from "@/components/fullScreenModal";
-import { FullScreenIcon } from "@/components/svgs";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 export default function MyRooms() {
   const { userData } = useUserData();
@@ -63,6 +63,38 @@ export default function MyRooms() {
 
     filterImages();
   }, [roomsImages, selectedThemeFilter, selectedTypeFilter]);
+
+  const publishHandler = async () => {
+    try {
+      await publishImage(imageToShow.id, !imageToShow.published);
+      toast.success(!imageToShow.published ? "Image published to Explore." : "Image unpublished to Explore.");
+      let updatedRoomsImages = [...roomsImages];
+
+      const index = roomsImages.findIndex((room) => room.id === imageToShow.id);
+      updatedRoomsImages[index] = { ...updatedRoomsImages[index], published: !imageToShow.published };
+      setRoomsImages(updatedRoomsImages);
+      setImageToShow({ ...imageToShow, published: !imageToShow.published });
+    } catch ({ error }) {
+      toast.error(error);
+    }
+  };
+
+  const downloadHandler = async () => {
+    try {
+      const response = await axios.get(imageToShow.after, { responseType: "blob" });
+      const blob = response.data;
+
+      const blobUrl = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = blobUrl;
+      anchor.download = `Room Image - StyleGPT`;
+      anchor.click();
+
+      URL.revokeObjectURL(blobUrl);
+    } catch (e) {
+      toast.error("Error downloading image");
+    }
+  };
 
   if (isLoading) return <FullScreenLoader />;
 
@@ -144,10 +176,7 @@ export default function MyRooms() {
                   onClick={() => fullScreenHandler(image)}
                 >
                   <div className="absolute top-0 left-0 w-full h-full skeleton rounded-lg opacity-30"></div>
-                  <img
-                    src={image.after}
-                    className="absolute inset-0 w-full h-full object-cover rounded-lg"
-                  />
+                  <img src={image.after} className="absolute inset-0 w-full h-full object-cover rounded-lg" />
                 </div>
               ))}
             </div>
@@ -156,7 +185,7 @@ export default function MyRooms() {
               <div className="flex-1 flex flex-col items-center justify-center py-16">
                 <PhotoIcon color="#0d9488" width={60} height={60} />
                 <h4 className="text-3xl font-medium my-3 text-center">No images created yet.</h4>
-                <p className="mb-6 text-centerz">
+                <p className="mb-6 text-center">
                   Looks like you haven't created any images yet. Start creating to see them here!
                 </p>
                 <Link href={"/room-designer"}>
@@ -185,7 +214,9 @@ export default function MyRooms() {
         closeModalHandler={() => setShowFullScreen(false)}
         imageAfter={imageToShow && imageToShow?.after}
         imageBefore={imageToShow && imageToShow.before}
-        imageId={imageToShow?.id}
+        onPublish={publishHandler}
+        isPublished={imageToShow?.published}
+        onDownload={downloadHandler}
       />
     </>
   );

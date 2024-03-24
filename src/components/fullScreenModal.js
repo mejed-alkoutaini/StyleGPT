@@ -6,34 +6,18 @@ import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slide
 import { toast } from "react-hot-toast";
 
 const FullScreenModal = (props) => {
-  const { active, closeModalHandler, imageBefore, imageAfter, imageId, disableDownloading, disablePublishing } = props;
+  const {
+    active,
+    closeModalHandler,
+    imageBefore,
+    imageAfter,
+    disableDownloading,
+    disablePublishing,
+    onPublish,
+    isPublished,
+    onDownload,
+  } = props;
   const [comparison, setComparison] = useState(true);
-
-  const publishHandler = async () => {
-    try {
-      await publishImage(imageId);
-      toast.success("Image published to Explore.");
-    } catch ({ error }) {
-      toast.error(error);
-    }
-  };
-
-  const downloadHandler = async () => {
-    try {
-      const response = await axios.get(imageAfter, { responseType: "blob" });
-      const blob = response.data;
-
-      const blobUrl = URL.createObjectURL(blob);
-      const anchor = document.createElement("a");
-      anchor.href = blobUrl;
-      anchor.download = `Room Image`;
-      anchor.click();
-
-      URL.revokeObjectURL(blobUrl);
-    } catch (e) {
-      toast.error("Error downloading image");
-    }
-  };
 
   return (
     <div
@@ -43,8 +27,8 @@ const FullScreenModal = (props) => {
     >
       <div className="flex items-center gap-6 absolute top-0 right-0 py-2 px-6 z-50 bg-teal-600 rounded-bl-lg">
         {!disablePublishing && (
-          <div className="tooltip tooltip-bottom cursor-pointer" data-tip="Publish">
-            <CloudArrowUpIcon width={30} height={30} color="white" onClick={publishHandler} />
+          <div className="tooltip tooltip-bottom cursor-pointer" data-tip={isPublished ? "UnPublish" : "Publish"}>
+            <CloudArrowUpIcon width={30} height={30} color="white" onClick={onPublish} />
           </div>
         )}
 
@@ -54,7 +38,7 @@ const FullScreenModal = (props) => {
 
         {!disableDownloading && (
           <div className="tooltip tooltip-bottom cursor-pointer" data-tip="Download">
-            <ArrowDownCircleIcon width={30} height={30} color="white" onClick={downloadHandler} />
+            <ArrowDownCircleIcon width={30} height={30} color="white" onClick={onDownload} />
           </div>
         )}
 

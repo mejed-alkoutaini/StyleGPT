@@ -5,13 +5,11 @@ import Dropzone from "react-dropzone";
 import { generateRoomImage, publishImage } from "@/utils/api";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
-import WithProtectedRoute from "./withProtectedRoute";
 import FullScreenModal from "./fullScreenModal";
 import { FullScreenIcon } from "./svgs";
 import { storage } from "@/utils/firebase";
 import { uuidGenerator } from "@/utils/utils";
 import { toast } from "react-hot-toast";
-import DefaultLayout from "./defaultLayout";
 import { useUserData } from "../contexts/userDataContext";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 
@@ -26,6 +24,7 @@ export default function RoomDesigner(props) {
   const [comparison, setComparison] = useState(false);
   const [showFullScreen, setShowFullScreen] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
+  const [isPublished, setIsPublished] = useState(false);
 
   const selectImageHandler = (file) => {
     if (file) {
@@ -53,7 +52,7 @@ export default function RoomDesigner(props) {
 
       // Get the download URL
       const url = await storage.ref("rooms").child(fileName).getDownloadURL();
-      
+
       return url;
     } catch (error) {
       toast.error("Failed to upload image. Please check your file and try again.");
@@ -98,8 +97,9 @@ export default function RoomDesigner(props) {
     setIsPublishing(true);
 
     try {
-      await publishImage(generatedImage.id);
-      toast.success("Image published to Explore.");
+      await publishImage(generatedImage.id, !isPublished);
+      toast.success(!isPublished ? "Image published to Explore." : "Image unpublished to Explore.");
+      setIsPublished(!isPublished);
     } catch ({ error }) {
       toast.error(error);
     } finally {
@@ -115,7 +115,7 @@ export default function RoomDesigner(props) {
       const blobUrl = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = blobUrl;
-      anchor.download = `A ${selectedTheme.text} ${selectedRoomType.text}`;
+      anchor.download = `A ${selectedTheme.text} ${selectedRoomType.text} - StyleGPT.io`;
       anchor.click();
 
       URL.revokeObjectURL(blobUrl);
@@ -267,7 +267,7 @@ export default function RoomDesigner(props) {
                       </button>
 
                       <button className="btn btn-primary text-white px-6" onClick={publishHandler}>
-                        {!isPublishing && "Publish"}
+                        {!isPublishing && (isPublished ? "UnPublish" : "Publish")}
                         {isPublishing && <span className="loading loading-spinner"></span>}
                       </button>
 
@@ -301,6 +301,9 @@ export default function RoomDesigner(props) {
         imageAfter={generatedImage?.image}
         imageBefore={previewImage}
         imageId={generatedImage?.id}
+        isPublished={isPublished}
+        onPublish={publishHandler}
+        onDownload={downloadHandler}
       />
     </>
   );
