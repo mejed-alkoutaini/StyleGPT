@@ -11,17 +11,27 @@
   box-sizing: border-box;
 }
 
-/* .fullScreenImage {
-  width: 1230px !important;
-  height: 820px !important;
-  object-fit: contain !important;
-  object-position: center center;
-} */
 .fullScreenImage {
-  width: unset !important;
+  max-width: 98vw !important;
+  max-height: 88vh !important;
+  object-fit: cover !important;
+  object-position: center center;
+}
+
+/* @media screen and (min-width: 1230px) {
+  .fullScreenImage {
+    width: 1230px !important;
+    height: 820px !important;
+    max-height: 88vh !important;
+    max-width: 100vw !important;
+  }
+} */
+
+/* .fullScreenImage {
+  width: 100% !important;
   height: 100vh !important;
   max-height: 88vh !important;
-  max-width: 100vw !important;
+  max-width: 98vw !important;
   object-fit: contain !important;
   object-position: center center;
 }
@@ -43,4 +53,4 @@
     max-width: 100vw !important;
     object-fit: contain !important;
   }
-}
+} */

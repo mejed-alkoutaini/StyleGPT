@@ -56,8 +56,8 @@ const FullScreenModal = (props) => {
       {comparison && (
         <ReactCompareSlider
           style={{ overflow: "visible" }}
-          itemOne={<ReactCompareSliderImage src={imageBefore} alt="Image one" className="fullScreenImage" />}
-          itemTwo={<ReactCompareSliderImage src={imageAfter} alt="Image two" className="fullScreenImage" />}
+          itemOne={<ReactCompareSliderImage src={imageBefore} key={imageBefore} alt="Image one" className="fullScreenImage" />}
+          itemTwo={<ReactCompareSliderImage src={imageAfter} key={imageAfter} alt="Image two" className="fullScreenImage" />}
         />
       )}
 
