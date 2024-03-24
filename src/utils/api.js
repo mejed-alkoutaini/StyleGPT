@@ -100,7 +100,7 @@ export const getExploreImages = async (uid) => {
   }
 };
 
-export const getAdminExploreImages = async (uid) => {
+export const getAdminExploreImages = async () => {
   try {
     const result = await axios({
       url: `${HOST}/api/admin/explore`,
@@ -135,12 +135,8 @@ export const publishImage = async (id, published) => {
 export const adminPublishImage = async (id, published) => {
   try {
     const result = await axios({
-      url: `${HOST}/api/admin/publish`,
-      method: "POST",
-      data: {
-        id,
-        published,
-      },
+      url: `${HOST}/api/admin/publish?id=${id}&published=${published}`,
+      method: "GET",
     });
 
     return result.data;

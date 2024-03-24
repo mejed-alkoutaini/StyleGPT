@@ -2,9 +2,9 @@ import WithProtectedRoute from "../../components/withProtectedRoute";
 import DefaultLayout from "../../components/defaultLayout";
 import { roomsThemes, roomsTypes } from "@/data/data";
 import { useEffect, useState } from "react";
-import { adminPublishImage, getAdminExploreImages, getUserImages, publishImage } from "@/utils/api";
+import { adminPublishImage, getAdminExploreImages } from "@/utils/api";
 import { useUserData } from "../../contexts/userDataContext";
-import { AdjustmentsHorizontalIcon, PhotoIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon, CheckCircleIcon, PhotoIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import useWindowSize from "@/hooks/useWindowSize";
 import FullScreenLoader from "@/components/fullScreenLoader";
 import FullScreenModal from "@/components/fullScreenModal";
@@ -72,7 +72,7 @@ export default function MyRooms() {
 
   const publishHandler = async () => {
     try {
-      await adminPublishImage(imageToShow.id, !imageToShow.explore);
+      await adminPublishImage(imageToShow.imageId, !imageToShow.explore);
       toast.success(!imageToShow.explore ? "Image published to Explore." : "Image unpublished to Explore.");
       let updatedRoomsImages = [...roomsImages];
 
@@ -183,6 +183,14 @@ export default function MyRooms() {
                 >
                   <div className="absolute top-0 left-0 w-full h-full skeleton rounded-lg opacity-30"></div>
                   <img src={image.after} className="absolute inset-0 w-full h-full object-cover rounded-lg" />
+                  {image.explore && (
+                    <CheckCircleIcon
+                      width={30}
+                      height={30}
+                      color="#0d9488"
+                      className="absolute top-2 right-2 bg-white rounded-full"
+                    />
+                  )}
                 </div>
               ))}
             </div>
