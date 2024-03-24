@@ -77,7 +77,7 @@ export default function MyRooms() {
       let updatedRoomsImages = [...roomsImages];
 
       const index = roomsImages.findIndex((room) => room.id === imageToShow.id);
-      updatedRoomsImages[index] = { ...updatedRoomsImages[index], published: !imageToShow.explore };
+      updatedRoomsImages[index] = { ...updatedRoomsImages[index], explore: !imageToShow.explore };
       setRoomsImages(updatedRoomsImages);
       setImageToShow({ ...imageToShow, explore: !imageToShow.explore });
     } catch ({ message }) {
