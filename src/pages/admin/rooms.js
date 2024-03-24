@@ -59,7 +59,6 @@ export default function MyRooms() {
 
   useEffect(() => {
     const filterImages = () => {
-      console.log("123213")
       const filteredImages = roomsImages.filter(
         (image) =>
           (!selectedThemeFilter || image.theme === selectedThemeFilter) &&
