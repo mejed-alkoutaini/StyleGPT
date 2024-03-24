@@ -73,6 +73,11 @@ export default function RoomDesigner(props) {
     setGeneratedImage(null);
 
     try {
+      if (userData.credit <= 0) {
+        toast.error("No credits available");
+        return;
+      }
+
       // Get the URL of the uploaded image
       const imageUrl = await uploadImageToFirebase(selectedFile);
 
