@@ -15,7 +15,7 @@
   max-width: 98vw !important;
   max-height: 88vh !important;
   object-fit: cover !important;
-  object-position: center center;
+  object-position: center center;background:"red"
 }
 
 /* @media screen and (min-width: 1230px) {

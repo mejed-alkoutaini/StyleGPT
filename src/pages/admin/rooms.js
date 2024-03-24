@@ -74,7 +74,7 @@ export default function MyRooms() {
 
   const publishHandler = async () => {
     try {
-      await adminPublishImage(imageToShow.imageId, !imageToShow.explore);
+      await adminPublishImage(imageToShow.id, !imageToShow.explore);
       toast.success(!imageToShow.explore ? "Image published to Explore." : "Image unpublished to Explore.");
       let updatedRoomsImages = [...roomsImages];
 
