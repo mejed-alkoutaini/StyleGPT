@@ -33,7 +33,7 @@ const Navbar = () => {
               {currentUser ? (
                 <>
                   <Link
-                    href={"/"}
+                    href={"/explore"}
                     className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
                     onClick={() => {
                       setIsOpen(false);
@@ -43,7 +43,7 @@ const Navbar = () => {
                   </Link>
                   <Link
                     href={"/my-rooms"}
-                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                    className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
                     onClick={() => setIsOpen(false)}
                   >
                     My Rooms
@@ -69,7 +69,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link
-                    href={"/"}
+                    href={"/explore"}
                     className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
                     onClick={() => {
                       setIsOpen(false);
@@ -127,9 +127,14 @@ const Navbar = () => {
             )}
 
             {!currentUser && (
-              <Link href={"/login"} className="btn btn-primary text-white w-32 md:hidden">
-                Get Started
-              </Link>
+              <>
+                <Link href={"/explore"} className="text-base md:hidden" onClick={() => setIsOpen(false)}>
+                  Explore
+                </Link>
+                <Link href={"/login"} className="btn btn-primary text-white w-32 md:hidden">
+                  Get Started
+                </Link>
+              </>
             )}
 
             <div className="cursor-pointer hidden md:block">

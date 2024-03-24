@@ -36,7 +36,7 @@ const DefaultLayout = (props) => {
       setIsLoading(false);
       return;
     }
-    
+
     getUserData();
   }, []);
 
