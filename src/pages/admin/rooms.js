@@ -19,6 +19,7 @@ export default function MyRooms() {
   const [filteredRoomsImages, setFilteredRoomsImages] = useState([]);
   const [selectedTypeFilter, setSelectedTypeFilter] = useState(null);
   const [selectedThemeFilter, setSelectedThemeFilter] = useState(null);
+  const [selectedPublishedFilter, setSelectedPublishedFilter] = useState(null);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const [showFullScreen, setShowFullScreen] = useState(false);
   const [imageToShow, setImageToShow] = useState(null);
@@ -61,14 +62,15 @@ export default function MyRooms() {
       const filteredImages = roomsImages.filter(
         (image) =>
           (!selectedThemeFilter || image.theme === selectedThemeFilter) &&
-          (!selectedTypeFilter || image.type === selectedTypeFilter)
+          (!selectedTypeFilter || image.type === selectedTypeFilter) &&
+          (!selectedPublishedFilter || image.explore === true)
       );
 
       setFilteredRoomsImages(filteredImages);
     };
 
     filterImages();
-  }, [roomsImages, selectedThemeFilter, selectedTypeFilter]);
+  }, [roomsImages, selectedThemeFilter, selectedTypeFilter,selectedPublishedFilter]);
 
   const publishHandler = async () => {
     try {
@@ -137,6 +139,21 @@ export default function MyRooms() {
               />
             </div>
 
+            <ul className="menu gap-1 border-b-[1px] p-0 pb-4 mb-4 pr-4">
+              <li className="menu-title text-primary font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
+                Publishing Status
+              </li>
+              <li>
+                <a
+                  className={` lg:text-[14px] py-[6px] px-[12px] ${
+                    selectedPublishedFilter === "explore" ? "bg-primary hover:bg-primary text-white" : ""
+                  }`}
+                  onClick={() => setSelectedPublishedFilter(selectedPublishedFilter === "explore" ? null : "explore")}
+                >
+                  Explore
+                </a>
+              </li>
+            </ul>
             <ul className="menu gap-1 border-b-[1px] p-0 pb-4 mb-4 pr-4">
               <li className="menu-title text-primary font-semibold text-sm py-[6px] px-[12px] lg:text-[14px]">
                 Room Type

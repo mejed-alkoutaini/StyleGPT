@@ -1,9 +1,6 @@
-import { publishImage } from "@/utils/api";
 import { XCircleIcon, ArrowDownCircleIcon, CloudArrowUpIcon, ArrowsRightLeftIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
 import { useState } from "react";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
-import { toast } from "react-hot-toast";
 
 const FullScreenModal = (props) => {
   const {
