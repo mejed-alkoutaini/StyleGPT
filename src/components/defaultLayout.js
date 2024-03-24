@@ -22,7 +22,7 @@ const DefaultLayout = (props) => {
           setUserData(userData);
         })
         .catch((e) => {
-          toast.error(e.message);
+          toast.error(e.message || "Error getting user data");
         });
 
       setIsLoading(false);

@@ -14,7 +14,7 @@ import { useUserData } from "../contexts/userDataContext";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 
 export default function RoomDesigner(props) {
-  const { userData } = useUserData();
+  const { userData, setUserData } = useUserData();
   const [selectedRoomType, setSelectedRoomType] = useState(roomsTypes[0]);
   const [selectedTheme, setSelectedTheme] = useState(roomsThemes[0]);
   const [selectedFile, setSelectedFile] = useState();
@@ -78,12 +78,13 @@ export default function RoomDesigner(props) {
 
       // Generate new room image
       const result = await generateRoomImage(userData.uid, selectedRoomType.id, selectedTheme.id, imageUrl)
-        .then((image) => {
-          setGeneratedImage(image);
+        .then((data) => {
+          setGeneratedImage(data);
           toast.success("Image saved to your gallery.");
+          setUserData({ ...userData, credit: data.credit });
         })
-        .catch(({ error }) => {
-          toast.error(error);
+        .catch(({ message }) => {
+          toast.error(message || "Error generating image");
         });
     } catch (error) {
       toast.error(error.message);
@@ -100,8 +101,8 @@ export default function RoomDesigner(props) {
       await publishImage(generatedImage.id, !isPublished);
       toast.success(!isPublished ? "Image published to Explore." : "Image unpublished to Explore.");
       setIsPublished(!isPublished);
-    } catch ({ error }) {
-      toast.error(error);
+    } catch ({ message }) {
+      toast.error(message || "Error publishing image");
     } finally {
       setIsPublishing(false);
     }
@@ -115,7 +116,7 @@ export default function RoomDesigner(props) {
       const blobUrl = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = blobUrl;
-      anchor.download = `A ${selectedTheme.text} ${selectedRoomType.text} - StyleGPT.io`;
+      anchor.download = `A ${selectedTheme.text} ${selectedRoomType.text} - StyleGPT`;
       anchor.click();
 
       URL.revokeObjectURL(blobUrl);

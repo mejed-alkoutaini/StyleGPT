@@ -74,8 +74,8 @@ export default function MyRooms() {
       updatedRoomsImages[index] = { ...updatedRoomsImages[index], published: !imageToShow.published };
       setRoomsImages(updatedRoomsImages);
       setImageToShow({ ...imageToShow, published: !imageToShow.published });
-    } catch ({ error }) {
-      toast.error(error);
+    } catch ({ message }) {
+      toast.error(message || "Error publishing image");
     }
   };
 
