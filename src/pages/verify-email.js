@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import firebase from "../utils/firebase";
 import { toast } from "react-hot-toast";
-import Navbar from "../components/navbar";
 import DefaultLayout from "@/components/defaultLayout";
+import Head from "next/head";
 
 export default function VerifyEmail() {
   const { currentUser } = useAuth();
@@ -39,6 +39,10 @@ export default function VerifyEmail() {
 
   return (
     <>
+      <Head>
+        <title>Verify your Email | StyleGPT</title>
+      </Head>
+
       <div className="w-full h-screen flex md:h-full md:py-16">
         <div className="w-[40%] md:hidden bg-red-500 relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
 

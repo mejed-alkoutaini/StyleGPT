@@ -1,10 +1,15 @@
 import DefaultLayout from "@/components/defaultLayout";
 import Footer from "@/components/footer";
+import Head from "next/head";
 import React from "react";
 
 export default function TermsOfService() {
   return (
     <>
+      <Head>
+        <title>Terms of Service | StyleGPT</title>
+      </Head>
+
       <div className="bg-gray-100 min-h-screen">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg">

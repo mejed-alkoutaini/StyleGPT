@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { createUser, isUserExist } from "@/utils/api";
 import Navbar from "../components/navbar";
 import DefaultLayout from "@/components/defaultLayout";
+import Head from "next/head";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -135,6 +136,10 @@ export default function Signup() {
 
   return (
     <>
+      <Head>
+        <title>Sign Up | StyleGPT</title>
+      </Head>
+
       <div className="w-full h-screen flex md:h-full md:py-16">
         <div className="w-[40%] md:hidden relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
 

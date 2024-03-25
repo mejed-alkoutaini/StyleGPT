@@ -4,6 +4,7 @@ import { getExploreImages } from "@/utils/api";
 import FullScreenLoader from "@/components/fullScreenLoader";
 import FullScreenModal from "@/components/fullScreenModal";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Head from "next/head";
 
 export default function Explore() {
   const [roomsImages, setRoomsImages] = useState();
@@ -33,6 +34,10 @@ export default function Explore() {
 
   return (
     <>
+      <Head>
+        <title>Explore | StyleGPT</title>
+      </Head>
+
       <div className="w-full max-w-[1600px] mx-auto py-16 px-8 md:px-4 md:py-8">
         <h1 className="text-5xl font-semibold w-full pb-8 lg:text-4xl">EXPLORE</h1>
 

@@ -1,11 +1,15 @@
 import DefaultLayout from "@/components/defaultLayout";
 import Footer from "@/components/footer";
-import Link from "next/link";
+import Head from "next/head";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>StyleGPT</title>
+      </Head>
+
       <div className="hero py-24 pb-44 md:py-12 md:pb-24">
         <div className="hero-content flex flex-col text-center">
           <div className="max-w-lg">

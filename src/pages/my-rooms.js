@@ -12,6 +12,7 @@ import Link from "next/link";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Head from "next/head";
 
 export default function MyRooms() {
   const { userData } = useUserData();
@@ -101,6 +102,10 @@ export default function MyRooms() {
 
   return (
     <>
+      <Head>
+        <title>My Rooms | StyleGPT</title>
+      </Head>
+
       <div className="w-full max-w-[1600px] mx-auto py-16 px-8 md:px-4 md:py-8">
         <h1 className="text-5xl font-semibold w-full pb-8 border-b-[1px] lg:text-4xl">MY ROOMS</h1>
 

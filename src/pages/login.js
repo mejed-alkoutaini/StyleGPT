@@ -8,6 +8,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
 import { createUser, isUserExist } from "@/utils/api";
 import DefaultLayout from "@/components/defaultLayout";
+import Head from "next/head";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -105,6 +106,10 @@ export default function Login() {
 
   return (
     <>
+      <Head>
+        <title>Login | StyleGPT</title>
+      </Head>
+
       <div className="w-full h-screen flex md:h-full md:py-16">
         <div className="w-[40%] md:hidden relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
 
@@ -176,7 +181,7 @@ export default function Login() {
       </div>
     </>
   );
-};
+}
 
 Login.getLayout = function getLayout(page) {
   return <DefaultLayout>{page}</DefaultLayout>;
