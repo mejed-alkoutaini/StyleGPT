@@ -10,7 +10,7 @@ import Navbar from "./navbar";
 const DefaultLayout = (props) => {
   const { children } = props;
   const { currentUser } = useAuth();
-  const { setUserData } = useUserData();
+  const { userData, setUserData } = useUserData();
   const [isLoading, setIsLoading] = useState(true);
 
   const getUserData = async () => {
@@ -32,11 +32,11 @@ const DefaultLayout = (props) => {
   };
 
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser || currentUser?.email === userData?.email) {
       setIsLoading(false);
       return;
     }
-
+    console.log("sending");
     getUserData();
   }, []);
 

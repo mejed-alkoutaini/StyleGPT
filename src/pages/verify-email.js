@@ -5,8 +5,9 @@ import { useRouter } from "next/router";
 import firebase from "../utils/firebase";
 import { toast } from "react-hot-toast";
 import Navbar from "../components/navbar";
+import DefaultLayout from "@/components/defaultLayout";
 
-const VerifyEmail = () => {
+export default function VerifyEmail() {
   const { currentUser } = useAuth();
   const router = useRouter();
   const [isSendingEmail, setIsSendingEmail] = useState(false);
@@ -38,7 +39,6 @@ const VerifyEmail = () => {
 
   return (
     <>
-      <Navbar />
       <div className="w-full h-screen flex md:h-full md:py-16">
         <div className="w-[40%] md:hidden bg-red-500 relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
 
@@ -63,6 +63,8 @@ const VerifyEmail = () => {
       </div>
     </>
   );
-};
+}
 
-export default VerifyEmail;
+VerifyEmail.getLayout = function getLayout(page) {
+  return <DefaultLayout>{page}</DefaultLayout>;
+};

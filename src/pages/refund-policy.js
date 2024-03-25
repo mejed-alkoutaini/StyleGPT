@@ -1,10 +1,9 @@
+import DefaultLayout from "@/components/defaultLayout";
 import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 
-const RefundPolicy = () => {
+export default function RefundPolicy() {
   return (
     <>
-      <Navbar />
       <div className="bg-gray-100 min-h-screen">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg">
@@ -57,6 +56,8 @@ const RefundPolicy = () => {
       <Footer />
     </>
   );
-};
+}
 
-export default RefundPolicy;
+RefundPolicy.getLayout = function getLayout(page) {
+  return <DefaultLayout>{page}</DefaultLayout>;
+};

@@ -8,8 +8,9 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
 import { createUser, isUserExist } from "@/utils/api";
 import Navbar from "../components/navbar";
+import DefaultLayout from "@/components/defaultLayout";
 
-const Signup = () => {
+export default function Signup() {
   const [email, setEmail] = useState("");
   const [emailHasError, setEmailHasError] = useState(false);
   const [password, setPassowrd] = useState("");
@@ -113,13 +114,13 @@ const Signup = () => {
         });
 
         if (userExist) {
-          router.push("/");
+          router.push("/explore");
           return;
         }
 
         createUser(uid, email, photoURL, displayName)
           .then(() => {
-            router.push("/");
+            router.push("/explore");
           })
           .catch((e) => {
             toast.error("Oops! Something went wrong during sign up. Please try again.");
@@ -134,8 +135,6 @@ const Signup = () => {
 
   return (
     <>
-      <Navbar />
-
       <div className="w-full h-screen flex md:h-full md:py-16">
         <div className="w-[40%] md:hidden relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
 
@@ -236,6 +235,8 @@ const Signup = () => {
       </div>
     </>
   );
-};
+}
 
-export default Signup;
+Signup.getLayout = function getLayout(page) {
+  return <DefaultLayout>{page}</DefaultLayout>;
+};

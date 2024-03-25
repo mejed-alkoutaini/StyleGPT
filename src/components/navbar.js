@@ -34,7 +34,7 @@ const Navbar = () => {
                 <>
                   <Link
                     href={"/explore"}
-                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
+                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full md:block"
                     onClick={() => {
                       setIsOpen(false);
                     }}
@@ -93,14 +93,14 @@ const Navbar = () => {
             {currentUser && (
               <>
                 <div className="border-[1px] rounded-md py-2 px-4 font-medium text-teal-600 md:px-2 text-sm">
-                  {userData.credit} Credits
+                  {userData?.credit} Credits
                 </div>
 
                 <div className="dropdown dropdown-end ">
                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
                       {userData?.image ? (
-                        <img alt="Tailwind CSS Navbar component" src={userData.image} />
+                        <img alt="Tailwind CSS Navbar component" src={userData?.image} />
                       ) : (
                         <UserCircleIcon width={40} height={40} />
                       )}

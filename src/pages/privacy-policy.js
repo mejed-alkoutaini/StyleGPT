@@ -1,10 +1,10 @@
+import DefaultLayout from "@/components/defaultLayout";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
-const PrivacyPolicy = () => {
+export default function PrivacyPolicy() {
   return (
     <>
-      <Navbar />
       <div className="bg-gray-100 min-h-screen">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg">
@@ -152,7 +152,9 @@ const PrivacyPolicy = () => {
               information may be uploaded to the Company's servers and/or a Service Provider's server or it may be
               simply stored on Your device.
             </p>
-            <p className="mt-4">You can enable or disable access to this information at any time, through Your Device settings.</p>
+            <p className="mt-4">
+              You can enable or disable access to this information at any time, through Your Device settings.
+            </p>
             <h3 className="mt-6 font-semibold text-xl">Use of Your Personal Data</h3>
             <p className="mt-4">The Company may use Personal Data for the following purposes:</p>
             <ul>
@@ -277,7 +279,9 @@ const PrivacyPolicy = () => {
               You have the right to delete or request that We assist in deleting the Personal Data that We have
               collected about You.
             </p>
-            <p className="mt-4">Our Service may give You the ability to delete certain information about You from within the Service.</p>
+            <p className="mt-4">
+              Our Service may give You the ability to delete certain information about You from within the Service.
+            </p>
             <p className="mt-4">
               You may update, amend, or delete Your information at any time by signing in to Your Account, if you have
               one, and visiting the account settings section that allows you to manage Your personal information. You
@@ -304,7 +308,7 @@ const PrivacyPolicy = () => {
             <p className="mt-4">
               The Company may disclose Your Personal Data in the good faith belief that such action is necessary to:
             </p>
-            <ul >
+            <ul>
               <li>Comply with a legal obligation</li>
               <li>Protect and defend the rights or property of the Company</li>
               <li>Prevent or investigate possible wrongdoing in connection with the Service</li>
@@ -363,6 +367,8 @@ const PrivacyPolicy = () => {
       <Footer />
     </>
   );
-};
+}
 
-export default PrivacyPolicy;
+PrivacyPolicy.getLayout = function getLayout(page) {
+  return <DefaultLayout>{page}</DefaultLayout>;
+};

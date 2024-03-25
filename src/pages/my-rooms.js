@@ -11,6 +11,7 @@ import FullScreenModal from "@/components/fullScreenModal";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function MyRooms() {
   const { userData } = useUserData();
@@ -176,7 +177,7 @@ export default function MyRooms() {
                   onClick={() => fullScreenHandler(image)}
                 >
                   <div className="absolute top-0 left-0 w-full h-full skeleton rounded-lg opacity-30"></div>
-                  <img src={image.after} className="absolute inset-0 w-full h-full object-cover rounded-lg" />
+                  <LazyLoadImage src={image.after} className="absolute inset-0 w-full h-full object-cover rounded-lg" />
                 </div>
               ))}
             </div>
