@@ -1,6 +1,7 @@
 import DefaultLayout from "@/components/defaultLayout";
 import Footer from "@/components/footer";
 import Head from "next/head";
+import Link from "next/link";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 
 export default function Home() {
@@ -17,7 +18,9 @@ export default function Home() {
             <p className="text-lg py-6">
               Transform your space with ease. Upload your image, 3D model, or sketch, and watch your room come to life.
             </p>
-            <button className="btn btn-primary text-white">Get Started</button>
+            <Link href={"/signup"}>
+              <button className="btn btn-primary text-white">Get Started</button>
+            </Link>
           </div>
 
           <ReactCompareSlider

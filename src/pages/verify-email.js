@@ -59,8 +59,8 @@ export default function VerifyEmail() {
               {!isSendingEmail && "Resend Verification Email"}
               {isSendingEmail && <span className="loading loading-spinner"></span>}
             </button>
-            <p className="text-sm mt-4 text-center text-primary">
-              Already verified? <a href="/verify-email">Refresh</a>
+            <p className="text-sm mt-4 text-center">
+              Already verified? <a href="/verify-email" className="text-primary">Refresh</a>
             </p>
           </div>
         </div>
