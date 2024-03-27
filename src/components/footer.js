@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center bg-slate-100">
+    <div className="flex flex-col items-center bg-[#eff8f2]">
       <footer className="footer p-10 text-base-content max-w-[1200px]">
         <nav>
           <h6 className="footer-title">Services</h6>

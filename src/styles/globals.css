@@ -15,7 +15,8 @@
   max-width: 98vw !important;
   max-height: 88vh !important;
   object-fit: cover !important;
-  object-position: center center;background:"red"
+  object-position: center center;
+  background: "red";
 }
 
 /* @media screen and (min-width: 1230px) {
@@ -54,3 +55,15 @@
     object-fit: contain !important;
   }
 } */
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
