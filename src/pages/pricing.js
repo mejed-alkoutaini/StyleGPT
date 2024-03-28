@@ -78,8 +78,8 @@ export default function Pricing() {
     const priceId = selectedPlan[monthlyBilling ? "monthlyId" : "yearlyId"];
 
     const transaction = await createTransaction(priceId, userData.email)
-      .then(({transactionId}) => {
-        router.push(`/checkout?txn=${transactionId}`);
+      .then(({ transactionsId }) => {
+        router.push(`/checkout?txn=${transactionsId}`);
       })
       .catch(() => toast.error("Failed"));
 

@@ -10,6 +10,7 @@ import { createUser, isUserExist } from "@/utils/api";
 import DefaultLayout from "@/components/defaultLayout";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
+import Navbar from "@/components/navbar";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -113,6 +114,7 @@ export default function Login() {
         <title>Login | StyleGPT</title>
       </Head>
 
+      <Navbar />
       <div className="w-full h-screen flex md:h-full md:py-16">
         <div className="w-[40%] md:hidden relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
 
@@ -185,7 +187,3 @@ export default function Login() {
     </>
   );
 }
-
-Login.getLayout = function getLayout(page) {
-  return <DefaultLayout>{page}</DefaultLayout>;
-};

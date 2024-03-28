@@ -3,7 +3,6 @@ import { useAuth } from "../contexts/authContext";
 import { useUserData } from "../contexts/userDataContext";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import Loader from "./loader";
 import FullScreenLoader from "./fullScreenLoader";
 import Navbar from "./navbar";
 

@@ -30,10 +30,10 @@ export default function Checkout() {
       if (paddleInstance) {
         paddleInstance?.Checkout.open({
           transactionId: transactionId,
-          settings: {
-            displayMode: "inline",
-            frameTarget: "checkout",
-          },
+          // settings: {
+          //   displayMode: "inline",
+          //   frameTarget: "checkout",
+          // },
         });
       }
     });

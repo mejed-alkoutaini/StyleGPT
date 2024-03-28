@@ -152,7 +152,7 @@ export const createTransaction = async (priceId, email) => {
       url: `${HOST}/api/transactions`,
       method: "POST",
       data: {
-        priceid: priceId,
+        priceId: priceId,
         email,
       },
     });
