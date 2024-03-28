@@ -31,7 +31,7 @@ const plans = [
     monthlyCost: "10$",
     monthlyId: "pri_01ht0te0q14r6ev80jbqzvjn18",
     yearlyCost: "100$",
-    monthlyId: "pri_01ht0te0q14r6ev80jbqzvjn18",
+    yearlyId: "pri_01ht1698v22ekn1y0qz2wq4s35",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     features: [
       "Lorem ipsum dolor sit amet1",
@@ -47,7 +47,7 @@ const plans = [
     monthlyCost: "20$",
     monthlyId: "pri_01ht14z3262tg4b15g5r08n2yy",
     yearlyCost: "200$",
-    monthlyId: "pri_01ht16a23bvh8jphfp8xzqvtch",
+    yearlyId: "pri_01ht16a23bvh8jphfp8xzqvtch",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     features: [
       "Lorem ipsum dolor sit amet1",
