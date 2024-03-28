@@ -146,20 +146,20 @@ export const adminPublishImage = async (id, published) => {
   }
 };
 
-export const craeteTransaction = async (priceId, email) => {
+export const createTransaction = async (priceId, email) => {
   try {
     const result = await axios({
-      url: `${HOST}/api/transaction`,
+      url: `${HOST}/api/transactions`,
       method: "POST",
       data: {
-        priceId,
+        priceid: priceId,
         email,
       },
     });
 
     return result.data;
   } catch (error) {
-    console.error("Error publishing image", error);
+    console.error("Error create transaction", error);
     throw error.response.data;
   }
 };

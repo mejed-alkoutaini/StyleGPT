@@ -2,7 +2,7 @@ import DefaultLayout from "@/components/defaultLayout";
 import Footer from "@/components/footer";
 import Testimonials from "@/components/homePage/testimonials";
 import { useUserData } from "@/contexts/userDataContext";
-import { craeteTransaction } from "@/utils/api";
+import { createTransaction } from "@/utils/api";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -77,7 +77,7 @@ export default function Pricing() {
     const selectedPlan = plans.find((p) => p.id === planId);
     const priceId = selectedPlan[monthlyBilling ? "monthlyId" : "yearlyId"];
 
-    const transaction = await craeteTransaction(priceId, userData.email)
+    const transaction = await createTransaction(priceId, userData.email)
       .then(({transactionId}) => {
         router.push(`/checkout?txn=${transactionId}`);
       })
