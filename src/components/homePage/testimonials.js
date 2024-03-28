@@ -50,7 +50,7 @@ const Testimonials = () => {
 
         <div className="grid grid-cols-3 gap-8 lg:gap-4 md:grid-cols-1">
           {data.map((i, idx) => (
-            <div className={`flex flex-col p-3 border-2 rounded-lg`}>
+            <div key={i.name} className={`flex flex-col p-3 border-2 rounded-lg`}>
               <div className="flex items-center">
                 <UserCircleIcon width={30} height={30} className="text-gray-500 mr-2" />
                 <h6>{i.name}</h6>

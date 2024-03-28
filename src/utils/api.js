@@ -145,3 +145,21 @@ export const adminPublishImage = async (id, published) => {
     throw error.response.data;
   }
 };
+
+export const craeteTransaction = async (priceId, email) => {
+  try {
+    const result = await axios({
+      url: `${HOST}/api/transaction`,
+      method: "POST",
+      data: {
+        priceId,
+        email,
+      },
+    });
+
+    return result.data;
+  } catch (error) {
+    console.error("Error publishing image", error);
+    throw error.response.data;
+  }
+};

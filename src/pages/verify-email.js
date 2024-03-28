@@ -6,11 +6,14 @@ import firebase from "../utils/firebase";
 import { toast } from "react-hot-toast";
 import DefaultLayout from "@/components/defaultLayout";
 import Head from "next/head";
+import { useSearchParams } from "next/navigation";
 
 export default function VerifyEmail() {
   const { currentUser } = useAuth();
   const router = useRouter();
   const [isSendingEmail, setIsSendingEmail] = useState(false);
+  const searchParams = useSearchParams();
+  const redirectParams = searchParams.get("redirect");
 
   useEffect(() => {
     if (!currentUser) {
@@ -18,7 +21,7 @@ export default function VerifyEmail() {
     }
 
     if (currentUser?.emailVerified) {
-      router.push("/");
+      router.push(redirectParams || "/explore");
     }
   }, [currentUser]);
 
@@ -60,7 +63,10 @@ export default function VerifyEmail() {
               {isSendingEmail && <span className="loading loading-spinner"></span>}
             </button>
             <p className="text-sm mt-4 text-center">
-              Already verified? <a href="/verify-email" className="text-primary">Refresh</a>
+              Already verified?{" "}
+              <a href="/verify-email" className="text-primary">
+                Refresh
+              </a>
             </p>
           </div>
         </div>

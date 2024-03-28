@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { createUser, isUserExist } from "@/utils/api";
 import DefaultLayout from "@/components/defaultLayout";
 import Head from "next/head";
+import { useSearchParams } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -18,6 +19,8 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectParams = searchParams.get("redirect");
 
   const emailChangeHandler = (e) => {
     const value = e.target.value;
@@ -58,9 +61,9 @@ export default function Login() {
         .signInWithEmailAndPassword(email, password)
         .then(({ user }) => {
           if (user.emailVerified) {
-            router.push("/explore");
+            router.push(redirectParams || "/explore");
           } else {
-            router.push("/verify-email");
+            router.push(`/verify-email?${redirectParams ? `redirect=${redirectParams}` : ""}`);
           }
         })
         .catch((e) => {
@@ -84,14 +87,14 @@ export default function Login() {
         });
 
         if (userExist) {
-          router.push("/explore");
+          router.push(redirectParams || "/explore");
 
           return;
         }
 
         createUser(uid, email, photoURL, displayName)
           .then(() => {
-            router.push("/explore");
+            router.push(redirectParams || "/explore");
           })
           .catch((e) => {
             toast.error("Oops! Something went wrong during sign up. Please try again.");
@@ -171,7 +174,7 @@ export default function Login() {
               <p className="mt-8 text-center">
                 Don't have an account yet?
                 <br />{" "}
-                <Link href={"/signup"} className="text-primary">
+                <Link href={`/signup?${redirectParams ? `redirect=${redirectParams}` : ""}`} className="text-primary">
                   Sign up
                 </Link>
               </p>

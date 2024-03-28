@@ -8,9 +8,10 @@ import { useState } from "react";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentUser } = useAuth();
-  const { userData } = useUserData();
+  const { userData, setUserData } = useUserData();
 
   const logoutHandler = () => {
+    setUserData(null);
     firebase.auth().signOut();
   };
 
@@ -70,12 +71,19 @@ const Navbar = () => {
                 <>
                   <Link
                     href={"/explore"}
-                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
+                    className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
                     onClick={() => {
                       setIsOpen(false);
                     }}
                   >
                     Explore
+                  </Link>
+                  <Link
+                    href={"/pricing"}
+                    className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Pricing
                   </Link>
                   <Link
                     href={"/login"}
@@ -130,6 +138,9 @@ const Navbar = () => {
               <>
                 <Link href={"/explore"} className="text-base md:hidden" onClick={() => setIsOpen(false)}>
                   Explore
+                </Link>
+                <Link href={"/pricing"} className="text-base md:hidden" onClick={() => setIsOpen(false)}>
+                  Pricing
                 </Link>
                 <Link href={"/login"} className="btn btn-primary text-white w-32 md:hidden">
                   Get Started

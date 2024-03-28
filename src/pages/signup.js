@@ -10,6 +10,7 @@ import { createUser, isUserExist } from "@/utils/api";
 import Navbar from "../components/navbar";
 import DefaultLayout from "@/components/defaultLayout";
 import Head from "next/head";
+import { useSearchParams } from "next/navigation";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -23,6 +24,8 @@ export default function Signup() {
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectParams = searchParams.get("redirect");
 
   const emailChangeHandler = (e) => {
     const value = e.target.value;
@@ -87,7 +90,7 @@ export default function Signup() {
           createUser(uid, email, photoURL, displayName)
             .then(async () => {
               await firebase.auth().currentUser.sendEmailVerification();
-              router.push("/verify-email");
+              router.push(`/verify-email?${redirectParams ? `redirect=${redirectParams}` : ""}`);
             })
             .catch((e) => {
               toast.error("Oops! Something went wrong during sign up. Please try again.");
@@ -115,13 +118,13 @@ export default function Signup() {
         });
 
         if (userExist) {
-          router.push("/explore");
+          router.push(redirectParams || "/explore");
           return;
         }
 
         createUser(uid, email, photoURL, displayName)
           .then(() => {
-            router.push("/explore");
+            router.push(redirectParams || "/explore");
           })
           .catch((e) => {
             toast.error("Oops! Something went wrong during sign up. Please try again.");
@@ -229,8 +232,8 @@ export default function Signup() {
               </form>
               <p className="mt-8 text-center">
                 Already have an account?
-                <br />{" "}
-                <Link href={"/login"} className="text-primary">
+                <br />
+                <Link href={`/login?${redirectParams ? `redirect=${redirectParams}` : ""}`} className="text-primary">
                   Sign in
                 </Link>
               </p>

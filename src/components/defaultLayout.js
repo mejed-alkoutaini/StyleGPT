@@ -36,9 +36,9 @@ const DefaultLayout = (props) => {
       setIsLoading(false);
       return;
     }
-    console.log("sending");
+
     getUserData();
-  }, []);
+  }, [currentUser]);
 
   if (isLoading) return <FullScreenLoader />;
 
