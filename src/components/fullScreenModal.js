@@ -1,5 +1,6 @@
+import useWindowSize from "@/hooks/useWindowSize";
 import { XCircleIcon, ArrowDownCircleIcon, CloudArrowUpIcon, ArrowsRightLeftIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 
 const FullScreenModal = (props) => {
@@ -14,8 +15,24 @@ const FullScreenModal = (props) => {
     isPublished,
     onDownload,
   } = props;
-  const [comparison, setComparison] = useState(true);
+  const [comparison, setComparison] = useState(false);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const imageRef = useRef();
+  const windowSize = useWindowSize();
 
+  // Handle the image load event to capture and set dimensions
+  const handleImageLoad = (event) => {
+    // Access the target from the event, which is the image element here
+    // const { naturalWidth, naturalHeight } = event.target;
+
+    console.log(imageRef.current.offsetWidth, imageRef.current.offsetHeight);
+    // Update the state with the image's dimensions
+    setDimensions({ width: imageRef.current.offsetWidth, height: imageRef.current.offsetHeight });
+  };
+
+  useEffect(() => {
+    handleImageLoad();
+  }, [imageRef, imageAfter, imageBefore, comparison, windowSize]);
   return (
     <div
       className={`fixed top-0 left-0 w-full h-screen flex items-center justify-center transition-all ${
@@ -44,18 +61,25 @@ const FullScreenModal = (props) => {
         </div>
       </div>
 
-      {!comparison && (
-        <div>
-          <img src={imageAfter} className="fullScreenImage" />
-        </div>
-      )}
+      <div className={`${!comparison ? "relative opacity-100 visible" : "absolute opacity-0 invisible"} select-none`}>
+        <img src={imageAfter} className="fullScreenImage" ref={imageRef} />
+      </div>
 
       {comparison && (
         <ReactCompareSlider
-        className="bg-rd"
-          style={{ overflow: "visible", }}
-          itemOne={<ReactCompareSliderImage src={imageBefore} key={imageBefore} alt="Image one" className="fullScreenImage" />}
-          itemTwo={<ReactCompareSliderImage src={imageAfter} key={imageAfter} alt="Image two" className="fullScreenImage" />}
+          className={`bg-rd select-none w-[${dimensions.width}px] h-[${dimensions.height}px]`}
+          style={{ overflow: "visible", width: dimensions.width, height: dimensions.height }}
+          itemOne={
+            <ReactCompareSliderImage
+              src={imageBefore}
+              key={imageBefore}
+              alt="Image one"
+              className={`fullScreenImage `}
+            />
+          }
+          itemTwo={
+            <ReactCompareSliderImage src={imageAfter} key={imageAfter} alt="Image two" className="fullScreenImage" />
+          }
         />
       )}
 
