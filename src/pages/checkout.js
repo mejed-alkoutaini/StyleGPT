@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { initializePaddle } from "@paddle/paddle-js";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
@@ -15,8 +15,18 @@ export default function Checkout() {
   const searchParams = useSearchParams();
   const transactionId = searchParams.get("txn");
   const router = useRouter();
-  const timeoutRef = useRef();
 
+  const [instance, setInstance] = useState();
+
+  const completedCheckoutHandler = async () => {
+    setTimeout(async () => {
+      const userData = await getUser(currentUser?.uid);
+      setUserData(userData);
+      router.push("/explore");
+      document.querySelector(".paddle-frame-overlay").remove();
+    }, 1000);
+    toast.success("Your Credits Have Been Added 🎉");
+  };
   useEffect(() => {
     if (!transactionId) {
       router.push("/");
@@ -28,27 +38,14 @@ export default function Checkout() {
       token: paddleToken,
       eventCallback: async function (data) {
         if (data.name == "checkout.completed") {
-          // Clear any existing timeout to ensure we don't have duplicate calls
-          clearTimeout(timeoutRef.current);
-
-          // Set a new timeout
-          timeoutRef.current = setTimeout(async () => {
-            // Assuming getUser is an async function that fetches user data
-            const userData = await getUser(currentUser?.uid);
-            setUserData(userData);
-            router.push("/explore");
-            toast.success("Your Credits Have Been Added 🎉");
-          }, 2000); // 2000 milliseconds = 2 seconds
+          completedCheckoutHandler();
         }
       },
     }).then((paddleInstance) => {
       if (paddleInstance) {
+        setInstance(paddleInstance);
         paddleInstance?.Checkout.open({
           transactionId: transactionId,
-          // settings: {
-          //   displayMode: "inline",
-          //   frameTarget: "checkout",
-          // },
         });
       }
     });
