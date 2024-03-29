@@ -12,56 +12,31 @@ const plans = [
   {
     id: 1,
     name: "Standart",
-    monthlyCost: "5$",
-    monthlyId: "pri_01ht14y95ghmd8p4dbw8zsk937",
-    yearlyCost: "50$",
-    yearlyId: "pri_01ht168x4kvjeswyy89d9cpjmf",
+    cost: "4.98$",
+    priceId: "pri_01ht3zpg2fcnrd2fgg09fm4w5r",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    features: [
-      "Lorem ipsum dolor sit amet1",
-      "Lorem ipsum dolor sit amet2",
-      "Lorem ipsum dolor sit amet3",
-      "Lorem ipsum dolor sit amet4",
-      "Lorem ipsum dolor sit amet5",
-    ],
+    features: ["30 Credits", "+30 Room Types", "+30 Room Themes", "Support by Email", "Commercial Usage"],
   },
   {
     id: 2,
     name: "Standart",
-    monthlyCost: "10$",
-    monthlyId: "pri_01ht0te0q14r6ev80jbqzvjn18",
-    yearlyCost: "100$",
-    yearlyId: "pri_01ht1698v22ekn1y0qz2wq4s35",
+    cost: "9.98$",
+    priceId: "pri_01ht3zq7wbx6aywfx5gp98gqxa",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    features: [
-      "Lorem ipsum dolor sit amet1",
-      "Lorem ipsum dolor sit amet2",
-      "Lorem ipsum dolor sit amet3",
-      "Lorem ipsum dolor sit amet4",
-      "Lorem ipsum dolor sit amet5",
-    ],
+    features: ["100 Credits", "+30 Room Types", "+30 Room Themes", "Support by Email", "Commercial Usage"],
   },
   {
     id: 3,
     name: "Standart",
-    monthlyCost: "20$",
-    monthlyId: "pri_01ht14z3262tg4b15g5r08n2yy",
-    yearlyCost: "200$",
-    yearlyId: "pri_01ht16a23bvh8jphfp8xzqvtch",
+    cost: "14.98$",
+    priceId: "pri_01ht432c7j1hv2hsegab17r34w",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    features: [
-      "Lorem ipsum dolor sit amet1",
-      "Lorem ipsum dolor sit amet2",
-      "Lorem ipsum dolor sit amet3",
-      "Lorem ipsum dolor sit amet4",
-      "Lorem ipsum dolor sit amet5",
-    ],
+    features: ["200 Credits", "+30 Room Types", "+30 Room Themes", "Support by Email", "Commercial Usage"],
   },
 ];
 
 export default function Pricing() {
   const { userData } = useUserData();
-  const [monthlyBilling, setMonthlyBilling] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPlanId, setSelectedPlanId] = useState(null);
   const router = useRouter();
@@ -75,9 +50,8 @@ export default function Pricing() {
     setIsLoading(true);
 
     const selectedPlan = plans.find((p) => p.id === planId);
-    const priceId = selectedPlan[monthlyBilling ? "monthlyId" : "yearlyId"];
 
-    const transaction = await createTransaction(priceId, userData.email)
+    const transaction = await createTransaction(selectedPlan.priceId, userData.email)
       .then(({ transactionsId }) => {
         router.push(`/checkout?txn=${transactionsId}`);
       })
@@ -98,18 +72,7 @@ export default function Pricing() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center justify-center mt-8">
-            <div className="flex items-center justify-center">
-              <span className="mr-8">Monthly</span>
-              <input
-                type="checkbox"
-                className="toggle toggle-primary toggle-lg"
-                checked={!monthlyBilling}
-                onChange={() => setMonthlyBilling(!monthlyBilling)}
-              />
-              <span className="ml-8">Yearly</span>
-            </div>
-
+          <div className="flex flex-col items-center justify-center mt-4">
             <div className="flex items-start justify-center gap-4 mt-8 lg:flex-wrap md:px-4">
               {plans.map((plan) => (
                 <div key={plan.id} className={`flex flex-col border-[1px] rounded-xl pt-6 pb-4 px-4`}>
@@ -120,10 +83,8 @@ export default function Pricing() {
                   <p className="text-sm mt-4 mb-8">{plan.description}</p>
 
                   <div>
-                    <span className="text-3xl font-semibold">
-                      {plan[monthlyBilling ? "monthlyCost" : "yearlyCost"]}
-                    </span>
-                    /{monthlyBilling ? "month" : "year"}
+                    <span className="text-3xl font-semibold">{plan.cost}</span>
+                    <span className="ml-2 text-sm">Exc. tax</span>
                   </div>
 
                   <div className="flex flex-col mt-8 gap-4">
@@ -143,7 +104,7 @@ export default function Pricing() {
                     onClick={() => selectingPlanHandler(plan.id)}
                   >
                     {isLoading && selectedPlanId === plan.id && <span class="loading loading-spinner"></span>}
-                    {(!isLoading || selectedPlanId !== plan.id) && "Get Started"}
+                    {(!isLoading || selectedPlanId !== plan.id) && "Pay Now"}
                   </button>
                 </div>
               ))}

@@ -15,7 +15,7 @@ const FullScreenModal = (props) => {
     isPublished,
     onDownload,
   } = props;
-  const [comparison, setComparison] = useState(false);
+  const [comparison, setComparison] = useState(true);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const imageRef = useRef();
   const windowSize = useWindowSize();

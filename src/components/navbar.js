@@ -18,8 +18,8 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar bg-base-100 flex justify-center items-center shadow-sm z-[999]">
-        <div className="flex-1 max-w-[1600px] px-8 md:px-2">
-          <div className="flex-1 md:flex">
+        <div className="flex-1 max-w-[1600px] flex justify-between items-center px-8 md:px-2">
+          <div className="fmd:flex">
             <Link href={"/"} className="text-xl font-semibold flex items-center gap-4">
               StyleGPT
             </Link>
