@@ -1,7 +1,7 @@
 import initAuth from "../../initAuth";
 import { AuthProvider } from "../contexts/authContext";
 import "../styles/globals.css";
-import { Toaster } from "react-hot-toast";
+import { ToastBar, Toaster, toast } from "react-hot-toast";
 import { UserDataProvider } from "../contexts/userDataContext";
 import Head from "next/head";
 
@@ -25,7 +25,19 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
       <AuthProvider>
         <UserDataProvider>
           {getLayout(<Component {...pageProps} />)}
-          <Toaster position="top-right" />
+
+          <Toaster containerClassName="toaster-wrapper" position="top-right" containerStyle={{ top: "70px" }}>
+            {(t) => (
+              <ToastBar toast={t}>
+                {({ icon, message }) => (
+                  <div onClick={() => toast.dismiss(t.id)} className="flex items-center cursor-pointer">
+                    {icon}
+                    {message}
+                  </div>
+                )}
+              </ToastBar>
+            )}
+          </Toaster>
         </UserDataProvider>
       </AuthProvider>
     </>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useAuth } from "../contexts/authContext";
 import firebase from "../utils/firebase";
 import { useUserData } from "../contexts/userDataContext";
-import { Bars2Icon, UserCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars2Icon, PlusCircleIcon, UserCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -50,13 +50,69 @@ const Navbar = () => {
                   >
                     My Rooms
                   </Link>
-                  <Link
-                    href={"/room-designer"}
-                    className=" text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Design
-                  </Link>
+
+                  <div className="dropdown dropdown-end md:hidden">
+                    <div tabIndex={0} className="text-base cursor-pointer">
+                      Design
+                    </div>
+                    <ul
+                      tabIndex={0}
+                      className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-48"
+                    >
+                      <li>
+                        <Link href={"/room-transformation"} className="py-2 text-base">
+                          Room
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href={"/sketch-transformation"} className="py-2 text-base">
+                          Sketch
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href={"/3d-transformation"} className="py-2 text-base">
+                          3D Model
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href={"/arch-transformation"} className="py-2 text-base">
+                          Architecture
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="hidden md:flex md:flex-col md:w-full">
+                    <Link
+                      href={"/room-transformation"}
+                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Room
+                    </Link>
+                    <Link
+                      href={"/sketch-transformation"}
+                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sketch
+                    </Link>
+                    <Link
+                      href={"/3d-transformation"}
+                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      3D Model
+                    </Link>
+                    <Link
+                      href={"/arch-transformation"}
+                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Architecture
+                    </Link>
+                  </div>
+
                   <Link
                     href={""}
                     className=" text-base md:px-4 md:py-3  md:w-full hidden md:block"
@@ -101,9 +157,13 @@ const Navbar = () => {
 
             {currentUser && (
               <>
-                <div className="border-[1px] rounded-md py-2 px-4 font-medium text-primary md:px-2 text-sm">
+                <Link
+                  href={"/billing"}
+                  className="border-[1px] rounded-md py-2 px-4 font-medium text-primary text-sm flex items-center gap-2 md:px-2"
+                >
                   {userData?.credit} Credits
-                </div>
+                  {userData?.credit <= 0 && <PlusCircleIcon width={24} height={24} />}
+                </Link>
 
                 <div className="dropdown dropdown-end ">
                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

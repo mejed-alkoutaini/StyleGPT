@@ -67,3 +67,10 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.toaster-wrapper > div {
+  display: none !important;
+}
+.toaster-wrapper > div:first-child {
+  display: flex !important;
+}

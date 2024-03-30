@@ -71,8 +71,8 @@ export default function RoomDesigner(props) {
 
     setIsGenerating(true);
     setGeneratedImage(null);
-    setIsPublished(false)
-    
+    setIsPublished(false);
+
     try {
       if (userData.credit <= 0) {
         toast.error("No credits available");
