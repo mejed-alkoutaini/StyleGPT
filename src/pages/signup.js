@@ -146,7 +146,7 @@ export default function Signup() {
           });
       })
       .catch((e) => {
-        if (e.code !== "auth/cancelled-popup-request") {
+        if (e.code !== "auth/cancelled-popup-request" || e.code !== "auth/popup-closed-by-user") {
           toast.error("Oops! Something went wrong during sign up. Please try again.");
         }
       });
@@ -160,7 +160,7 @@ export default function Signup() {
 
       <Navbar />
       <div className="w-full h-screen flex md:h-full md:py-16">
-        <div className="w-[40%] md:hidden relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
+        <div className="w-[40%] md:hidden relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_a4a54dc5-a360-46e7-ae26-55a25256b01d?alt=media')]"></div>
 
         <div className="flex justify-center items-center flex-1 px-8 md:px-4">
           <div className="w-full max-w-[480px]">
@@ -249,8 +249,8 @@ export default function Signup() {
 
                 <p className="text-sm text-gray-500 mt-8">
                   By registering you agree to the{" "}
-                  <Link href={"#"} className="text-primary">
-                    Terms & Conditions
+                  <Link href={"/terms-of-service"} className="text-primary">
+                    Terms of Service
                   </Link>
                 </p>
                 <button className="btn btn-primary text-white mt-2 w-full">
