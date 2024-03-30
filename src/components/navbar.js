@@ -21,7 +21,8 @@ const Navbar = () => {
         <div className="flex-1 max-w-[1600px] flex justify-between items-center px-8 md:px-2">
           <div className="fmd:flex">
             <Link href={"/"} className="text-xl font-semibold flex items-center gap-4">
-              StyleGPT
+              <img src="/logo.png" alt="logo" className="w-12 h-7 object-contain" />
+              <h4 className="md:hidden">StyleGPT</h4>
             </Link>
           </div>
 
