@@ -3,8 +3,8 @@ import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slide
 
 const tabData = [
   {
-    id: "image",
-    label: "Image",
+    id: "photo",
+    label: "Photo",
     before:
       "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FN0jmEKhC8OM5rbkllmK03WfWjm83_1daf0134-fc98-46b5-a643-43f81e870840?alt=media&token=8fb10e12-f048-4cc1-91e3-fe3da96ba317",
     after:
@@ -36,7 +36,7 @@ const tabData = [
   },
 ];
 const SpaceTypes = () => {
-  const [selectedTab, setSelectedTab] = useState("image");
+  const [selectedTab, setSelectedTab] = useState("photo");
 
   const renderTab = (tab) => (
     <h6
@@ -58,11 +58,12 @@ const SpaceTypes = () => {
         <div className="flex flex-col items-center w-full max-w-[1060px] mx-auto lg:px-10 lg:flex-col md:px-0">
           <div className="flex flex-col items-center max-w-[612px] md:px-5">
             <h2 className="text-5xl font-semibold text-center md:text-3xl">
-              Lorem ipsum dolor sit amet, consectetur sit
+              Begin Your Design Journey from Any Starting Point
             </h2>
             <p className="mt-4 mb-8 text-lg text-center md:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam.
+              StyleGPT works with whatever you have: a photo, a sketch, a 3D model, or architectural drawings. Simply
+              upload and select your style and let our AI handles the transformation, making your design dreams a
+              reality with ease.
             </p>
           </div>
 

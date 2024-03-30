@@ -12,16 +12,19 @@ const Hero = () => {
       <div className="flex items-center justify-center w-full py-24 md:py-16">
         <div className="flex items-center justify-between w-full max-w-[1200px] px-10 mx-auto lg:px-10 lg:flex-col md:px-5">
           <div className="w-full mr-12 lg:flex lg:flex-col lg:items-center lg:justify-center lg:max-w-[512px] lg:mr-0">
-            <h1 className="text-5xl font-semibold lg:text-center md:text-4xl">
-              Transform your space with ease. watch your room come to life.
+            <h1 className="text-6xl font-semibold lg:text-center md:text-4xl">
+              Transform Your Space with AI in Seconds
             </h1>
             <p className="mt-4 mb-8 text-lg lg:text-center md:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.
+              Upload a photo or sketch, pick your desired style, and watch the AI recreates your room with stunning
+              accuracy.
             </p>
 
             <div className="flex items-center gap-4">
-              <button className="btn btn-primary text-white w-32">Get Started</button>
+              <Link href={'/signup'}>
+                <button className="btn btn-primary text-white w-32">Get Started</button>
+              </Link>
+
               <Link href={"/login"} className="text-black font-semibold hover:text-primary">
                 Login
               </Link>
@@ -65,8 +68,6 @@ const Hero = () => {
           </div>
 
           <div className="relative w-full h-[600px] lg:flex lg:flex-col lg:items-center lg:mt-12 lg:h-auto">
-          
-
             <div className="w-[430px] object-contain absolute top-0 left-0 lg:w-full lg:max-w-[500px] lg:relative lg:mr-[200px] md:mr-5">
               <div
                 className="flex items-center gap-2 absolute top-3 left-3 px-2 py-2 bg-[#00000099] cursor-pointer text-white text-xs rounded-lg"

@@ -40,11 +40,11 @@ const Testimonials = () => {
       <div className="flex flex-col items-center justify-center w-full max-w-[1100px] px-10 mx-auto lg:px-10 lg:flex-col md:px-5">
         <div className="flex flex-col items-center max-w-[612px]">
           <h2 className="text-5xl font-semibold text-center md:text-3xl">
-            Lorem ipsum dolor sit amet, consectetur sit
+           +1500 User Designed Their Dream Spaces with Our App
           </h2>
           <p className="mt-4 mb-8 text-lg text-center md:text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam.
+            Explore testimonials from users who've brought their dream spaces to life with our platform. Their stories
+            reflect the ease, creativity, and satisfaction our AI-driven designs deliver.
           </p>
         </div>
 

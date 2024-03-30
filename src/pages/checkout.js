@@ -16,8 +16,6 @@ export default function Checkout() {
   const transactionId = searchParams.get("txn");
   const router = useRouter();
 
-  const [instance, setInstance] = useState();
-
   const completedCheckoutHandler = async () => {
     setTimeout(async () => {
       const userData = await getUser(currentUser?.uid);
@@ -43,7 +41,6 @@ export default function Checkout() {
       },
     }).then((paddleInstance) => {
       if (paddleInstance) {
-        setInstance(paddleInstance);
         paddleInstance?.Checkout.open({
           transactionId: transactionId,
         });

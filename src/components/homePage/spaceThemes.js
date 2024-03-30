@@ -59,7 +59,7 @@ const SpaceThemes = () => {
         <div className="flex justify-between mb-14 lg:flex-col lg:items-center ">
           <div className="w-full max-w-[50%] lg:max-w-[612px] lg:mb-8">
             <h2 className="text-5xl font-semibold md:text-3xl lg:text-center">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              Discover a World of Style with Our Diverse Themes
             </h2>
           </div>
           <div className="grid grid-cols-3 gap-x-14 gap-y-2 lg:grid-cols-4 md:grid-cols-2">

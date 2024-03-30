@@ -1,6 +1,5 @@
 import DefaultLayout from "@/components/defaultLayout";
 import Footer from "@/components/footer";
-import Convert from "@/components/homePage/convert";
 import CTA from "@/components/homePage/cta";
 import ExploreSection from "@/components/homePage/exploreSection";
 import SpaceTypes from "@/components/homePage/spaceTypes";
@@ -21,7 +20,6 @@ export default function Home() {
       <SpaceTypes />
       <SpaceThemes />
       <Testimonials />
-      <Convert />
       <ExploreSection />
       <CTA />
 

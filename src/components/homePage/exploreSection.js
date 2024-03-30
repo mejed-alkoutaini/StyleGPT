@@ -1,4 +1,5 @@
 import useWindowSize from "@/hooks/useWindowSize";
+import Link from "next/link";
 
 const images = [
   {
@@ -109,12 +110,15 @@ const ExploreSection = () => {
       </div>
 
       <div className=" w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center px-4">
-        <h2 className="text-5xl font-semibold text-white text-center mb-2 md:text-3xl">Lorem ipsum dolor sit</h2>
+        <h2 className="text-5xl font-semibold text-white text-center mb-2 md:text-3xl">
+          Explore User Creations <br />
+          and Share Yours
+        </h2>
         <p className="mt-4 mb-8 text-lg text-white text-center max-w-[650px] md:text-base">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam.
+          Browse a gallery of user transformations and add your own. It's a quick glimpse into varied styles and a
+          chance to inspire others with your design.
         </p>
-        <button className="btn btn-primary text-white w-32">Explore</button>
+        <Link href={'/explore'} className="btn btn-primary text-white w-32">Explore</Link>
       </div>
     </div>
   );
