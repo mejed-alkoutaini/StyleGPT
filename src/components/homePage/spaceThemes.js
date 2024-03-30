@@ -4,24 +4,24 @@ import React, { useState, useEffect } from "react";
 const SpaceThemes = () => {
   const images = [
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F3McaMIG508QbLFVPHwMniCMIRQE3_00ae504e-f6b6-4829-bf09-6d71c8cf2794?alt=media",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_f4222cfc-5362-4ec9-a511-e392b2a1799e?alt=media",
+      theme: "Original",
+    },
+    {
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_0673be0d-6c20-426c-b5a9-d88eb8c8066c?alt=media",
       theme: "Modern",
     },
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F3McaMIG508QbLFVPHwMniCMIRQE3_00ac81cd-51e4-4dfd-9408-3cf53d680b92?alt=media",
-      theme: "Minimalist",
-    },
-    {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FN0jmEKhC8OM5rbkllmK03WfWjm83_f9e9f029-6f53-4a1c-a5b1-76f9112f264d?alt=media",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_bf3a13a2-59ea-44dd-81e2-a86f2591fca6?alt=media",
       theme: "Vintage",
     },
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F3McaMIG508QbLFVPHwMniCMIRQE3_073f0731-3fae-4e51-b8a1-f1a07f40651c?alt=media",
-      theme: "Japanese",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_87ba22cd-234d-412a-b44c-d5dad7813fb9?alt=media",
+      theme: "Coastal",
     },
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F3McaMIG508QbLFVPHwMniCMIRQE3_1c03bb3d-5622-4298-a2ab-a8e417e63031?alt=media",
-      theme: "Coastal",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_70c83dbf-e850-40e1-9dc4-d88d23eef830?alt=media",
+      theme: "Japanese",
     },
   ];
 
@@ -78,7 +78,7 @@ const SpaceThemes = () => {
               key={index}
               className={`${
                 focusedImageIndex === index ? "w-[60%] md:w-[68%]" : "w-[10%] md:w-[8%]"
-              } h-[500px] object-cover transition-all duration-500 relative lg:h-[400px] md:h-[300px] xs:h-[200px]`}
+              } h-[500px] object-cover transition-all duration-500 relative lg:h-[400px] md:h-[200px] xs:h-[200px]`}
               onMouseEnter={() => setFocusedImageIndex(index)}
             >
               <img

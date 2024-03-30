@@ -6,7 +6,7 @@ const tabData = [
     id: "photo",
     label: "Photo",
     before:
-      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FN0jmEKhC8OM5rbkllmK03WfWjm83_1daf0134-fc98-46b5-a643-43f81e870840?alt=media&token=8fb10e12-f048-4cc1-91e3-fe3da96ba317",
+      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FnNUzcjLrFTaZLheM1kkjMzMUrJu2_10b7c5e7-7e3d-4123-b127-d43a0ac382dc?alt=media",
     after:
       "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FN0jmEKhC8OM5rbkllmK03WfWjm83_f9e9f029-6f53-4a1c-a5b1-76f9112f264d?alt=media",
   },

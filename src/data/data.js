@@ -7,6 +7,7 @@ export const roomsTypes = [
   { text: "Home Office", id: "home Office" },
   { text: "Gaming Room", id: "gaming room" },
   { text: "Basement", id: "basement" },
+  { text: "Architecture", id: "architecture" },
 ];
 
 export const roomsThemes = [
