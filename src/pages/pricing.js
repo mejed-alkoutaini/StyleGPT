@@ -10,28 +10,64 @@ import { toast } from "react-hot-toast";
 
 const plans = [
   {
+    id: 4,
+    name: "Free",
+    cost: "0$",
+    description: "Basic access with essential credits. Ideal for starters.",
+    features: [
+      "3 Credits",
+      "+30 Room Types",
+      "+30 Room Themes",
+      "Coming Soon: Search by Product",
+    ],
+  },
+  {
     id: 1,
-    name: "Standart",
+    name: "Trail",
     cost: "4.98$",
+    taxInfo: "Exc. tax",
     priceId: "pri_01ht3zpg2fcnrd2fgg09fm4w5r",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    features: ["30 Credits", "+30 Room Types", "+30 Room Themes", "Support by Email", "Commercial Usage"],
+    description: "Extended credits for full exploration. No risk.",
+    features: [
+      "30 Credits",
+      "+30 Room Types",
+      "+30 Room Themes",
+      "Support by Email",
+      "Commercial Usage",
+      "Coming Soon: Search by Product",
+    ],
   },
   {
     id: 2,
-    name: "Standart",
+    name: "Pro",
     cost: "9.98$",
+    taxInfo: "Exc. tax",
     priceId: "pri_01ht3zq7wbx6aywfx5gp98gqxa",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    features: ["100 Credits", "+30 Room Types", "+30 Room Themes", "Support by Email", "Commercial Usage"],
+    description: "Increased credits for professional needs. Enhanced scope.",
+    features: [
+      "100 Credits",
+      "+30 Room Types",
+      "+30 Room Themes",
+      "Support by Email",
+      "Commercial Usage",
+      "Coming Soon: Search by Product",
+    ],
   },
   {
     id: 3,
-    name: "Standart",
+    name: "Premium",
     cost: "14.98$",
+    taxInfo: "Exc. tax",
     priceId: "pri_01ht432c7j1hv2hsegab17r34w",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    features: ["200 Credits", "+30 Room Types", "+30 Room Themes", "Support by Email", "Commercial Usage"],
+    description: "Maximum credits and support. Ultimate access.",
+    features: [
+      "200 Credits",
+      "+30 Room Types",
+      "+30 Room Themes",
+      "Support by Email",
+      "Commercial Usage",
+      "Coming Soon: Search by Product",
+    ],
   },
 ];
 
@@ -47,6 +83,12 @@ export default function Pricing() {
       router.push("/login?redirect=/pricing");
       return;
     }
+
+    if (planId === 4) {
+      router.push("/explore");
+      return;
+    }
+
     setIsLoading(true);
 
     const selectedPlan = plans.find((p) => p.id === planId);
@@ -63,19 +105,19 @@ export default function Pricing() {
   return (
     <>
       <div className="flex items-center justify-center w-full pt-16 pb-24 md:pt-16 md:pb overflow-hidden">
-        <div className="flex flex-col items-center w-full max-w-[1060px] mx-auto lg:px-10 lg:flex-col md:px-0">
+        <div className="flex flex-col items-center w-full max-w-[1400px] mx-auto lg:px-10 lg:flex-col md:px-0">
           <div className="flex flex-col items-center max-w-[612px] md:px-5">
-            <h2 className="text-5xl font-semibold text-center md:text-3xl">Pricing</h2>
+            <h1 className="text-5xl font-semibold text-center md:text-3xl">Pricing</h1>
             <p className="mt-4 mb-8 text-lg text-center md:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam.
+              Choose the plan that's right for you with our clear, competitive pricing. Perfect for individuals and
+              businesses alike.
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-center mt-4">
-            <div className="flex items-start justify-center gap-4 mt-8 lg:flex-wrap md:px-4">
+            <div className="flex items-start justify-center gap-4 mt-8 flex-wrap md:px-4">
               {plans.map((plan) => (
-                <div key={plan.id} className={`flex flex-col border-[1px] rounded-xl pt-6 pb-4 px-4`}>
+                <div key={plan.id} className={`flex flex-col w-[300px] border-[1px] rounded-xl pt-6 pb-4 px-4`}>
                   <div>
                     <h4 className={`text-2xl font-semibold ${plan.id === 2 && "text-teal-600"}`}>{plan.name}</h4>
                   </div>
@@ -84,7 +126,7 @@ export default function Pricing() {
 
                   <div>
                     <span className="text-3xl font-semibold">{plan.cost}</span>
-                    <span className="ml-2 text-sm">Exc. tax</span>
+                    <span className="ml-2 text-sm">{plan.taxInfo}</span>
                   </div>
 
                   <div className="flex flex-col mt-8 gap-4">
@@ -104,7 +146,7 @@ export default function Pricing() {
                     onClick={() => selectingPlanHandler(plan.id)}
                   >
                     {isLoading && selectedPlanId === plan.id && <span class="loading loading-spinner"></span>}
-                    {(!isLoading || selectedPlanId !== plan.id) && "Pay Now"}
+                    {(!isLoading || selectedPlanId !== plan.id) && "Get Started"}
                   </button>
                 </div>
               ))}

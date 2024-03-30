@@ -75,7 +75,7 @@ export default function Signup() {
     setCheckErrors(true);
     let hasError = false;
 
-    if (!name.trim().length < 3) {
+    if (name.trim().length < 3) {
       setNameHasError(true);
       hasError = true;
     }

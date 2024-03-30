@@ -12,8 +12,11 @@ import { uuidGenerator } from "@/utils/utils";
 import { toast } from "react-hot-toast";
 import { useUserData } from "../contexts/userDataContext";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
+import { useAuth } from "@/contexts/authContext";
+import { useRouter } from "next/router";
 
 export default function RoomDesigner(props) {
+  const { currentUser } = useAuth();
   const { userData, setUserData } = useUserData();
   const [selectedRoomType, setSelectedRoomType] = useState(roomsTypes[0]);
   const [selectedTheme, setSelectedTheme] = useState(roomsThemes[0]);
@@ -25,6 +28,7 @@ export default function RoomDesigner(props) {
   const [showFullScreen, setShowFullScreen] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
+  const router = useRouter();
 
   const selectImageHandler = (file) => {
     if (file) {
@@ -64,6 +68,17 @@ export default function RoomDesigner(props) {
       toast("Please select an image", {
         icon: "⚠️",
       });
+      return;
+    }
+
+    if (!currentUser) {
+      toast("Please login to continue.", {
+        icon: "⚠️",
+      });
+      return;
+    }
+    if (!currentUser.emailVerified) {
+      router.push("/verify-email")
       return;
     }
 

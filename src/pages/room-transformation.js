@@ -15,9 +15,5 @@ export default function Page() {
 }
 
 Page.getLayout = function getLayout(page) {
-  return (
-    <WithProtectedRoute>
-      <DefaultLayout>{page}</DefaultLayout>
-    </WithProtectedRoute>
-  );
+  return <DefaultLayout>{page}</DefaultLayout>;
 };

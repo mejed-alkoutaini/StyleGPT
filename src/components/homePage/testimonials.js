@@ -3,33 +3,33 @@ import { StarIcon } from "@heroicons/react/24/solid";
 
 const data = [
   {
-    name: "User1",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    name: "Olivia I.",
+    text: "StyleGPT transformed my design sketches into stunning realities. A true game-changer for creative professionals.",
     date: "Mar 27, 2024",
   },
   {
-    name: "User2",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    name: "Chris H.",
+    text: "Our kitchen renovation vision came to life with this app. Visualizing different styles made decision making a breeze.",
     date: "Mar 27, 2024",
   },
   {
-    name: "User3",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    name: "Muhammad K.",
+    text: "Showing properties in various styles has set my real estate offerings apart. This app is a vision-selling powerhouse.",
     date: "Mar 27, 2024",
   },
   {
-    name: "User4",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    name: "George P.",
+    text: "With just a few clicks, my average room was transformed into something you'd see in a design magazine.",
     date: "Mar 27, 2024",
   },
   {
-    name: "User5",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    name: "Noah A.",
+    text: "I never thought I could see my dream home before it became a reality. This app made it possible.",
     date: "Mar 27, 2024",
   },
   {
-    name: "User6",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    name: "Mark R.",
+    text: "Seeing my living room in my dream style was magical.",
     date: "Mar 27, 2024",
   },
 ];
@@ -40,7 +40,7 @@ const Testimonials = () => {
       <div className="flex flex-col items-center justify-center w-full max-w-[1100px] px-10 mx-auto lg:px-10 lg:flex-col md:px-5">
         <div className="flex flex-col items-center max-w-[612px]">
           <h2 className="text-5xl font-semibold text-center md:text-3xl">
-           +1500 User Designed Their Dream Spaces with Our App
+            +1500 User Designed Their Dream Spaces with Our App
           </h2>
           <p className="mt-4 mb-8 text-lg text-center md:text-base">
             Explore testimonials from users who've brought their dream spaces to life with our platform. Their stories

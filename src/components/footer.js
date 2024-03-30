@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center bg-[#eff8f2]">
+    <div className="flex flex-col items-center bg-gray-100">
       <footer className="footer p-10 text-base-content max-w-[1400px]">
         <nav>
           <h6 className="footer-title">Services</h6>
@@ -11,6 +11,21 @@ const Footer = () => {
           </Link>
           <Link href={"/explore"} className="link link-hover">
             Explore
+          </Link>
+        </nav>
+        <nav>
+          <h6 className="footer-title">Design</h6>
+          <Link href={"/room-transformation"} className="link link-hover">
+            Room
+          </Link>
+          <Link href={"/sketch-transformation"} className="link link-hover">
+            Sketch
+          </Link>
+          <Link href={"/3d-transformation"} className="link link-hover">
+            3D Model
+          </Link>
+          <Link href={"/arch-transformation"} className="link link-hover">
+            Architecture
           </Link>
         </nav>
         <nav>
