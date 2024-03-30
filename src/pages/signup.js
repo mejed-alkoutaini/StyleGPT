@@ -12,6 +12,8 @@ import Head from "next/head";
 import { useSearchParams } from "next/navigation";
 
 export default function Signup() {
+  const [name, setName] = useState("");
+  const [nameHasError, setNameHasError] = useState(false);
   const [email, setEmail] = useState("");
   const [emailHasError, setEmailHasError] = useState(false);
   const [password, setPassowrd] = useState("");
@@ -25,6 +27,15 @@ export default function Signup() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectParams = searchParams.get("redirect");
+
+  const nameChangeHandler = (e) => {
+    const value = e.target.value;
+    setName(value);
+
+    if (checkErrors) {
+      name.trim().length >= 3 ? setNameHasError(false) : setNameHasError(true);
+    }
+  };
 
   const emailChangeHandler = (e) => {
     const value = e.target.value;
@@ -64,6 +75,11 @@ export default function Signup() {
     setCheckErrors(true);
     let hasError = false;
 
+    if (!name.trim().length < 3) {
+      setNameHasError(true);
+      hasError = true;
+    }
+
     if (!isValidEmail(email)) {
       setEmailHasError(true);
       hasError = true;
@@ -85,8 +101,8 @@ export default function Signup() {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(({ user }) => {
-          const { uid, email, photoURL, displayName } = user;
-          createUser(uid, email, photoURL, displayName)
+          const { uid, email, photoURL } = user;
+          createUser(uid, email, photoURL, name)
             .then(async () => {
               await firebase.auth().currentUser.sendEmailVerification();
               router.push(`/verify-email?${redirectParams ? `redirect=${redirectParams}` : ""}`);
@@ -167,6 +183,18 @@ export default function Signup() {
 
               <form className="flex flex-col" onSubmit={signupHandler}>
                 <div>
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    value={name}
+                    onChange={nameChangeHandler}
+                    className={`input input-bordered w-full ${nameHasError && "input-error	"}`}
+                    required={false}
+                  />
+
+                  {nameHasError && <span className="text-error text-sm">Please enter a valid username.</span>}
+                </div>
+                <div className="mt-4">
                   <input
                     type="email"
                     placeholder="Email"
