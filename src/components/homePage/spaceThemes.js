@@ -4,23 +4,23 @@ import React, { useState, useEffect } from "react";
 const SpaceThemes = () => {
   const images = [
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_f4222cfc-5362-4ec9-a511-e392b2a1799e?alt=media",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-original.png?alt=media",
       theme: "Original",
     },
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_0673be0d-6c20-426c-b5a9-d88eb8c8066c?alt=media",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-modern.jpeg?alt=media",
       theme: "Modern",
     },
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_bf3a13a2-59ea-44dd-81e2-a86f2591fca6?alt=media",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-vintage.jpeg?alt=media",
       theme: "Vintage",
     },
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_87ba22cd-234d-412a-b44c-d5dad7813fb9?alt=media",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-coastal.jpeg?alt=media",
       theme: "Coastal",
     },
     {
-      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_70c83dbf-e850-40e1-9dc4-d88d23eef830?alt=media",
+      src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-japanese.jpeg?alt=media",
       theme: "Japanese",
     },
   ];
@@ -55,7 +55,7 @@ const SpaceThemes = () => {
 
   return (
     <div className="flex items-center justify-center w-full py-24 md:py-16">
-      <div className="flex flex-col items-center justify-between w-full max-w-[1200px] px-10 mx-auto lg:px-10 lg:flex-col md:px-5">
+      <div className="flex flex-col items-center justify-between w-full max-w-[1400px] px-10 mx-auto lg:px-10 lg:flex-col md:px-5">
         <div className="flex justify-between mb-14 lg:flex-col lg:items-center ">
           <div className="w-full max-w-[50%] lg:max-w-[612px] lg:mb-8">
             <h2 className="text-5xl font-semibold md:text-3xl lg:text-center">

@@ -1,89 +1,84 @@
 import useWindowSize from "@/hooks/useWindowSize";
 import Link from "next/link";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const images = [
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_70c83dbf-e850-40e1-9dc4-d88d23eef830?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-1.jpeg?alt=media",
     theme: "Modern",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_87ba22cd-234d-412a-b44c-d5dad7813fb9?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fvintage-after.png?alt=media",
     theme: "Minimalist",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FN0jmEKhC8OM5rbkllmK03WfWjm83_f9e9f029-6f53-4a1c-a5b1-76f9112f264d?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-3.jpeg?alt=media",
     theme: "Vintage",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_03304544-8506-4f1c-8d07-56637bd9bb91?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-original.png?alt=media",
     theme: "Japanese",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_f55addb7-b743-4108-a15a-554b3569916a?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-2.jpeg?alt=media",
     theme: "Coastal",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_a4a54dc5-a360-46e7-ae26-55a25256b01d?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-modern.jpeg?alt=media",
     theme: "Theme6",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FnNUzcjLrFTaZLheM1kkjMzMUrJu2_b412247f-e7d2-4058-90ca-4d0e203b4aaa?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-vintage.jpeg?alt=media",
     theme: "Theme7",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FnNUzcjLrFTaZLheM1kkjMzMUrJu2_9ade4a48-6b7b-43ae-ac02-027715259128?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-coastal.jpeg?alt=media",
     theme: "Theme8",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_3c9ebad9-eefa-4e78-bf0b-f7e36b2a9ab4?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-4.jpeg?alt=media",
     theme: "Theme9",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FNRnkYSIjPwgCRHVuw1qLcgoTiAf2_7e508ac3-3f3d-457d-a6e5-389db54ee935?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-japanese.jpeg?alt=media",
     theme: "Theme10",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_8820694a-a8ad-4f39-a71d-1cde45e3cc06?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-5.jpeg?alt=media",
     theme: "Theme11",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_53c460d9-bc21-4325-ad71-cb7d6afb162f?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-7.jpeg?alt=media",
     theme: "Theme12",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_48f81de1-d292-429b-9284-6ab15e61100b?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-6.jpeg?alt=media",
     theme: "Theme13",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_6f9fca7f-a3ec-4445-acc8-d375723ab4b4?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-8.jpeg?alt=media",
     theme: "Theme14",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_c479b405-f5c0-471e-8015-9fc1646abb2b?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-9.jpeg?alt=media",
     theme: "Theme15",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_f8ddede4-0fa9-4450-8c4d-6fefceee548f?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-1.jpeg?alt=media",
     theme: "Theme15",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_74baa6dc-d79e-4707-bf25-1a8ff0fdbd0a?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fvintage-after.png?alt=media",
     theme: "Theme15",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_f66c60c5-9572-4387-879d-de09ca3a8a88?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-original.png?alt=media",
     theme: "Theme15",
   },
 ];
 
 const GalleryImage = ({ src }) => (
   <div>
-    <LazyLoadImage
-      key={src}
-      src={src}
-      className="h-full max-w-full rounded-lg object-cover object-center"
-    ></LazyLoadImage>
+    <img key={src} src={src} className="h-full max-w-full rounded-lg object-cover object-center"></img>
   </div>
 );
 
@@ -96,8 +91,6 @@ const GalleryColumn = ({ images, className }) => (
 );
 
 const ExploreSection = () => {
-  const windowSize = useWindowSize();
-
   return (
     <div className="w-full h-[700px] relative overflow-hidden bg-black lg:h-[550px] md:h-[450px]">
       <div className="absolute top-0 left-0 w-full h-full bg-[#0000007a]"></div>

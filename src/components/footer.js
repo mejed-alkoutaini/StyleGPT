@@ -3,7 +3,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="flex flex-col items-center bg-[#eff8f2]">
-      <footer className="footer p-10 text-base-content max-w-[1200px]">
+      <footer className="footer p-10 text-base-content max-w-[1400px]">
         <nav>
           <h6 className="footer-title">Services</h6>
           <Link href={"/"} className="link link-hover">
@@ -26,7 +26,7 @@ const Footer = () => {
           </Link>
         </nav>
       </footer>
-      <footer className="footer px-10 py-4 border-t text-base-content border-base-300 max-w-[1200px]">
+      <footer className="footer px-10 py-4 border-t text-base-content border-base-300 max-w-[1400px]">
         <aside className="items-center grid-flow-col">
           <p>SytleGPT</p>
         </aside>

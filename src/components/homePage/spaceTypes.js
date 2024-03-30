@@ -6,9 +6,9 @@ const tabData = [
     id: "photo",
     label: "Photo",
     before:
-      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FnNUzcjLrFTaZLheM1kkjMzMUrJu2_10b7c5e7-7e3d-4123-b127-d43a0ac382dc?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fvintage-before.png?alt=media",
     after:
-      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2FN0jmEKhC8OM5rbkllmK03WfWjm83_f9e9f029-6f53-4a1c-a5b1-76f9112f264d?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fvintage-after.png?alt=media",
   },
   {
     id: "sketch",
@@ -16,7 +16,7 @@ const tabData = [
     before:
       "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_23d28bb1-f965-4159-93c9-4e966b3e86bc?alt=media",
     after:
-      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_03304544-8506-4f1c-8d07-56637bd9bb91?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fsketch-after.jpeg?alt=media",
   },
   {
     id: "3dModel",
@@ -24,7 +24,7 @@ const tabData = [
     before:
       "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_362020b1-5e8c-48a4-9460-342b4fe252d1?alt=media",
     after:
-      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_f55addb7-b743-4108-a15a-554b3569916a?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2F3dmodel-after.jpeg?alt=media",
   },
   {
     id: "architecture",
@@ -32,7 +32,7 @@ const tabData = [
     before:
       "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_1d467ace-f609-403b-b31a-d17673d8b91a?alt=media",
     after:
-      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_a4a54dc5-a360-46e7-ae26-55a25256b01d?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Farch-after.jpeg?alt=media",
   },
 ];
 const SpaceTypes = () => {
