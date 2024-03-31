@@ -15,7 +15,7 @@ const plans = [
     name: "Free",
     cost: "0$",
     description: "Basic access with essential credits. Ideal for starters.",
-    features: ["3 Credits", "+30 Room Types", "+30 Room Themes", "Coming Soon: Search by Product"],
+    features: ["3 Credits", "+10 Room Types", "+40 Room Themes", "Coming Soon: Search by Product"],
   },
   {
     id: 1,
@@ -26,8 +26,8 @@ const plans = [
     description: "Extended credits for full exploration. No risk.",
     features: [
       "30 Credits",
-      "+30 Room Types",
-      "+30 Room Themes",
+      "+10 Room Types",
+      "+40 Room Themes",
       "Support by Email",
       "Commercial Usage",
       "Coming Soon: Search by Product",
@@ -42,8 +42,8 @@ const plans = [
     description: "Increased credits for professional needs. Enhanced scope.",
     features: [
       "100 Credits",
-      "+30 Room Types",
-      "+30 Room Themes",
+      "+10 Room Types",
+      "+40 Room Themes",
       "Support by Email",
       "Commercial Usage",
       "Coming Soon: Search by Product",
@@ -58,8 +58,8 @@ const plans = [
     description: "Maximum credits and support. Ultimate access.",
     features: [
       "200 Credits",
-      "+30 Room Types",
-      "+30 Room Themes",
+      "+10 Room Types",
+      "+40 Room Themes",
       "Support by Email",
       "Commercial Usage",
       "Coming Soon: Search by Product",

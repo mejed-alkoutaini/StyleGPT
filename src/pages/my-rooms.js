@@ -119,7 +119,7 @@ export default function MyRooms() {
           </h2>
 
           <div
-            className={`flex flex-col border-r-[1px] w-56 transition-all lg:w-44 pr-4 md:fixed md:z-10 md:bg-white md:w-full md:min-h-screen md:top-0 md:left-0 md:px-4 md:pt-7 ${
+            className={`flex flex-col border-r-[1px] w-56 transition-all lg:w-44 pr-4 md:fixed md:z-10 md:bg-white md:w-full md:h-screen md:overflow-scroll md:top-0 md:left-0 md:px-4 md:pt-7 ${
               showMobileFilters ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
           >

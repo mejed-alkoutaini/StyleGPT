@@ -34,10 +34,10 @@ const SpaceThemes = () => {
     "Futuristic",
     "Zen",
     "Vintage",
-    "Airbnb",
+    "American",
     "Japanese",
-    "Cyberpunk",
-    "+20 More",
+    "French",
+    "+30 More",
   ];
 
   const middleIndex = Math.floor(images.length / 2);
