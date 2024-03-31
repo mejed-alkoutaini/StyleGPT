@@ -2,7 +2,7 @@ import firebase, { googleProvider } from "../utils/firebase";
 import { useRouter } from "next/router";
 import { GoogleIcon } from "../components/svgs";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isValidEmail, isValidPassword } from "@/utils/utils";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
@@ -153,10 +153,13 @@ export default function Signup() {
       });
   };
 
-  if (currentUser && currentUser.emailVerified) {
-    router.push("/explore");
-    return;
-  }
+  useEffect(() => {
+    if (currentUser && currentUser.emailVerified) {
+      router.push("/explore");
+    } else if (currentUser && !currentUser.emailVerified) {
+      router.push("/verify-email");
+    }
+  }, []);
 
   return (
     <>
