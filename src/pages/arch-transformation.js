@@ -1,6 +1,6 @@
-import WithProtectedRoute from "../components/withProtectedRoute";
 import DefaultLayout from "../components/defaultLayout";
 import RoomDesigner from "@/components/roomDesigner";
+import { architectureTypes, roomsThemes } from "@/data/data";
 import Head from "next/head";
 
 export default function Page() {
@@ -9,7 +9,7 @@ export default function Page() {
       <Head>
         <title>Transform Your Architecture | StyleGPT</title>
       </Head>
-      <RoomDesigner title="Transform Your Architecture" />
+      <RoomDesigner title="Transform Your Architecture" types={architectureTypes} themes={roomsThemes} />
     </>
   );
 }

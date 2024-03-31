@@ -1,4 +1,3 @@
-import { roomsThemes, roomsTypes } from "@/data/data";
 import Dropdown from "./dropdown";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
@@ -15,11 +14,11 @@ import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slide
 import { useAuth } from "@/contexts/authContext";
 import { useRouter } from "next/router";
 
-export default function RoomDesigner(props) {
+export default function RoomDesigner({ types, themes, ...props }) {
   const { currentUser } = useAuth();
   const { userData, setUserData } = useUserData();
-  const [selectedRoomType, setSelectedRoomType] = useState(roomsTypes[0]);
-  const [selectedTheme, setSelectedTheme] = useState(roomsThemes[0]);
+  const [selectedRoomType, setSelectedRoomType] = useState(types[0]);
+  const [selectedTheme, setSelectedTheme] = useState(themes[0]);
   const [selectedFile, setSelectedFile] = useState();
   const [previewImage, setPreviewImage] = useState(null);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -78,7 +77,7 @@ export default function RoomDesigner(props) {
       return;
     }
     if (!currentUser.emailVerified) {
-      router.push("/verify-email")
+      router.push("/verify-email");
       return;
     }
 
@@ -150,23 +149,19 @@ export default function RoomDesigner(props) {
     <>
       <div className="flex justify-center w-full min-h-screen bg-[#F6F6F6] px-8 pt-16 pb-28 lg:p-4 lg:pb-14">
         <div className="w-full flex justify-center">
-          <div className="max-w-[1400px] flex justify-between items-center gap-0 lg:gap-10 flex-1 lg:flex-col">
+          <div className="max-w-[1400px] flex justify-between items-center gap-0 lg:gap-10 flex-1 lg:flex-col md:justify-start">
             <div className="flex flex-col bg-white px-5 py-8 w-full max-w-96 rounded-xl lg:max-w-full">
               <h1 className="text-3xl font-semibold lg:text-2xl md:text-xl">{props.title}</h1>
 
               <div className="mt-12 lg:mt-6">
-                <h4 className="mb-1 lg:text-sm">Room Type</h4>
-                <Dropdown
-                  options={roomsTypes}
-                  selectedOption={selectedRoomType}
-                  setSelectedOption={setSelectedRoomType}
-                />
+                <h4 className="mb-1 lg:text-sm">Type</h4>
+                <Dropdown options={types} selectedOption={selectedRoomType} setSelectedOption={setSelectedRoomType} />
               </div>
 
               <div className="mt-8">
-                <h4 className="mb-2 lg:text-sm">Room Theme</h4>
-                <div className="flex items-center flex-wrap gap-3">
-                  {roomsThemes.map((theme) => (
+                <h4 className="mb-2 lg:text-sm">Theme</h4>
+                <div className="flex items-center flex-wrap gap-3 max-h-[400px] overflow-y-scroll overflow-x-hidden md:max-h-[180px] md:grid md:grid-cols-4">
+                  {themes.map((theme) => (
                     <div
                       key={theme.id}
                       className="flex flex-col items-center justify-center cursor-pointer"
@@ -178,19 +173,22 @@ export default function RoomDesigner(props) {
                           selectedTheme.id === theme.id && "border-teal-600"
                         }`}
                       />
-                      <h6
-                        className={`text-sm md:text-xs transition-all ${
-                          selectedTheme.id === theme.id && "text-teal-600 font-semibold"
-                        }`}
-                      >
-                        {theme.text}
-                      </h6>
+
+                      <div className="flex items-center justify-center">
+                        <h6
+                          className={`text-sm md:text-xs transition-all max-w-[100px] text-center md:max-w-[80px] ${
+                            selectedTheme.id === theme.id && "text-teal-600 font-semibold"
+                          }`}
+                        >
+                          {theme.text}
+                        </h6>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="pt-32 lg:pt-16">
+              <div className="pt-16 lg:pt-8">
                 <button className="btn btn-primary text-white w-full" onClick={generateHandler}>
                   {!isGenerating && "Generate"}
                   {isGenerating && <span className="loading loading-spinner"></span>}

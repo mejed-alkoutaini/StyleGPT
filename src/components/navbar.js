@@ -50,6 +50,7 @@ const Navbar = () => {
                   >
                     My Rooms
                   </Link>
+                  
                   <div className="dropdown dropdown-end md:hidden">
                     <div tabIndex={0} className="text-base cursor-pointer">
                       Design
@@ -110,6 +111,14 @@ const Navbar = () => {
                       Architecture
                     </Link>
                   </div>
+
+                  <Link
+                    href={"/pricing"}
+                    className="text-base hidden md:px-4 md:py-3 md:border-b-[1px] md:w-full md:block"
+                    onClick={() => setIsOpen(false)}
+                  >
+                   Billing
+                  </Link>
 
                   <Link
                     href={""}
@@ -188,7 +197,7 @@ const Navbar = () => {
             {currentUser && (
               <>
                 <Link
-                  href={"/billing"}
+                  href={"/pricing"}
                   className="border-[1px] rounded-md py-2 px-4 font-medium text-primary text-sm flex items-center gap-2 md:px-2"
                 >
                   {userData?.credit} Credits
@@ -209,12 +218,9 @@ const Navbar = () => {
                     tabIndex={0}
                     className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                   >
-                    {/* <li>
-                  <a className="py-2 text-base">Profile</a>
-                  </li>
-                  <li>
-                  <a className="py-2 text-base">Settings</a>
-                </li> */}
+                    <li>
+                      <Link href={'/pricing'} className="py-2 text-base">Billing</Link>
+                    </li>
                     <li>
                       <a className="py-2 text-base" onClick={logoutHandler}>
                         Logout
