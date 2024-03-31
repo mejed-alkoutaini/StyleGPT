@@ -14,18 +14,9 @@ const Footer = () => {
           </Link>
         </nav>
         <nav>
-          <h6 className="footer-title">Design</h6>
+          <h6 className="footer-title">Product</h6>
           <Link href={"/design"} className="link link-hover">
-            Room
-          </Link>
-          <Link href={"/sketch-transformation"} className="link link-hover">
-            Sketch
-          </Link>
-          <Link href={"/3d-transformation"} className="link link-hover">
-            3D Model
-          </Link>
-          <Link href={"/arch-transformation"} className="link link-hover">
-            Architecture
+            Design
           </Link>
         </nav>
         <nav>
