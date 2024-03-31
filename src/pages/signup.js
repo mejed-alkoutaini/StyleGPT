@@ -153,7 +153,7 @@ export default function Signup() {
       });
   };
 
-  if (currentUser) {
+  if (currentUser && currentUser.emailVerified) {
     router.push("/explore");
     return;
   }
