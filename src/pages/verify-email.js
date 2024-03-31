@@ -47,7 +47,7 @@ export default function VerifyEmail() {
       </Head>
 
       <div className="w-full h-screen flex md:h-full md:py-16">
-        <div className="w-[40%] md:hidden bg-red-500 relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://img.freepik.com/free-photo/japandi-living-room-interior-design_53876-145502.jpg')]"></div>
+        <div className="w-[40%] md:hidden bg-red-500 relative overflow-hidden bg-no-repeat bg-cover bg-[url('https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/rooms%2F2VkKFDFL3nbmybmMeq1MRl9PdZ92_a4a54dc5-a360-46e7-ae26-55a25256b01d?alt=media')]"></div>
 
         <div className="flex justify-center items-center flex-1 px-8 md:px-4">
           <div className="w-full max-w-[480px] flex flex-col items-center justify-center">
