@@ -194,7 +194,7 @@ export default function MyRooms() {
                 <p className="mb-6 text-center">
                   Looks like you haven't created any images yet. Start creating to see them here!
                 </p>
-                <Link href={"/room-transformation"}>
+                <Link href={"/design"}>
                   <button className="btn btn-primary text-white px-6">Start Now</button>
                 </Link>
               </div>
@@ -206,7 +206,7 @@ export default function MyRooms() {
                 <p className="mb-6 max-w-xl text-center">
                   We couldn't find any images matching your filters. Try adjusting your filters or create something new!
                 </p>
-                <Link href={"/room-transformation"}>
+                <Link href={"/design"}>
                   <button className="btn btn-primary text-white px-6">Start Now</button>
                 </Link>
               </div>

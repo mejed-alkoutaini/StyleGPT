@@ -1,15 +1,15 @@
 import DefaultLayout from "../components/defaultLayout";
 import RoomDesigner from "@/components/roomDesigner";
 import Head from "next/head";
-import { roomsThemes, roomsTypes } from "@/data/data";
+import { roomsThemes, roomsTypes, sourcesTypes } from "@/data/data";
 
 export default function Page() {
   return (
     <>
       <Head>
-        <title>Room Designer | StyleGPT</title>
+        <title>Design | StyleGPT</title>
       </Head>
-      <RoomDesigner title="Redesign Your Room" types={roomsTypes} themes={roomsThemes} />
+      <RoomDesigner title="Redesign Your Space" types={roomsTypes} themes={roomsThemes} sources={sourcesTypes}/>
     </>
   );
 }

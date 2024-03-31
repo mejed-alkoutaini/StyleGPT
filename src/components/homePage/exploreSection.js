@@ -71,7 +71,7 @@ const images = [
     theme: "Theme15",
   },
   {
-    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Ftypes-original.png?alt=media",
+    src: "https://firebasestorage.googleapis.com/v0/b/roomai-af76d.appspot.com/o/Landing%20page%2Fexplore-7.jpeg?alt=media",
     theme: "Theme15",
   },
 ];

@@ -3,14 +3,14 @@ import axios from "axios";
 const HOST = process.env.NEXT_PUBLIC_HOST;
 const ENV = process.env.NEXT_PUBLIC_ENV;
 
-export const generateRoomImage = async (uid, roomType, roomTheme, imageUrl) => {
+export const generateRoomImage = async (uid, selectedSource, roomType, roomTheme, imageUrl) => {
   try {
     const result = await axios({
       url: `${HOST}/api/generateImage`,
       method: "POST",
       data: {
         uid,
-        roomType,
+        roomType: selectedSource === "architecture" ? selectedSource : roomType,
         roomTheme,
         image: imageUrl,
         resolution: "512",

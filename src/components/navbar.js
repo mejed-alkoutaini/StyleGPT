@@ -50,74 +50,20 @@ const Navbar = () => {
                   >
                     My Rooms
                   </Link>
-                  
-                  <div className="dropdown dropdown-end md:hidden">
-                    <div tabIndex={0} className="text-base cursor-pointer">
-                      Design
-                    </div>
-                    <ul
-                      tabIndex={0}
-                      className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-48"
-                    >
-                      <li>
-                        <Link href={"/room-transformation"} className="py-2 text-base">
-                          Room
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/sketch-transformation"} className="py-2 text-base">
-                          Sketch
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/3d-transformation"} className="py-2 text-base">
-                          3D Model
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href={"/arch-transformation"} className="py-2 text-base">
-                          Architecture
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="hidden md:flex md:flex-col md:w-full">
-                    <Link
-                      href={"/room-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Room
-                    </Link>
-                    <Link
-                      href={"/sketch-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Sketch
-                    </Link>
-                    <Link
-                      href={"/3d-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      3D Model
-                    </Link>
-                    <Link
-                      href={"/arch-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Architecture
-                    </Link>
-                  </div>
+                  <Link
+                    href={"/design"}
+                    className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Design
+                  </Link>
 
                   <Link
                     href={"/pricing"}
                     className="text-base hidden md:px-4 md:py-3 md:border-b-[1px] md:w-full md:block"
                     onClick={() => setIsOpen(false)}
                   >
-                   Billing
+                    Billing
                   </Link>
 
                   <Link
@@ -149,37 +95,13 @@ const Navbar = () => {
                   >
                     Pricing
                   </Link>
-
-                  <div className="hidden md:flex md:flex-col md:w-full">
-                    <Link
-                      href={"/room-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Room
-                    </Link>
-                    <Link
-                      href={"/sketch-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Sketch
-                    </Link>
-                    <Link
-                      href={"/3d-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      3D Model
-                    </Link>
-                    <Link
-                      href={"/arch-transformation"}
-                      className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Architecture
-                    </Link>
-                  </div>
+                  <Link
+                    href={"/design"}
+                    className="text-base md:px-4 md:py-3 md:border-b-[1px] md:w-full hidden md:block"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Design
+                  </Link>
 
                   <Link
                     href={"/login"}
@@ -219,7 +141,9 @@ const Navbar = () => {
                     className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                   >
                     <li>
-                      <Link href={'/pricing'} className="py-2 text-base">Billing</Link>
+                      <Link href={"/pricing"} className="py-2 text-base">
+                        Billing
+                      </Link>
                     </li>
                     <li>
                       <a className="py-2 text-base" onClick={logoutHandler}>
@@ -239,36 +163,10 @@ const Navbar = () => {
                 <Link href={"/pricing"} className="text-base md:hidden" onClick={() => setIsOpen(false)}>
                   Pricing
                 </Link>
-                <div className="dropdown dropdown-end md:hidden">
-                  <div tabIndex={0} className="text-base cursor-pointer">
-                    Design
-                  </div>
-                  <ul
-                    tabIndex={0}
-                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-48"
-                  >
-                    <li>
-                      <Link href={"/room-transformation"} className="py-2 text-base">
-                        Room
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={"/sketch-transformation"} className="py-2 text-base">
-                        Sketch
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={"/3d-transformation"} className="py-2 text-base">
-                        3D Model
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={"/arch-transformation"} className="py-2 text-base">
-                        Architecture
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+                <Link href={"/design"} className="text-base md:hidden" onClick={() => setIsOpen(false)}>
+                  Design
+                </Link>
+
                 <Link href={"/login"} className="btn btn-primary text-white w-32 md:hidden">
                   Get Started
                 </Link>

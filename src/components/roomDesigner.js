@@ -13,10 +13,12 @@ import { useUserData } from "../contexts/userDataContext";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 import { useAuth } from "@/contexts/authContext";
 import { useRouter } from "next/router";
+import ReactCountryFlag from "react-country-flag";
 
-export default function RoomDesigner({ types, themes, ...props }) {
+export default function RoomDesigner({ types, themes, sources, ...props }) {
   const { currentUser } = useAuth();
   const { userData, setUserData } = useUserData();
+  const [selectedSource, setSelectedSource] = useState(sources[0]);
   const [selectedRoomType, setSelectedRoomType] = useState(types[0]);
   const [selectedTheme, setSelectedTheme] = useState(themes[0]);
   const [selectedFile, setSelectedFile] = useState();
@@ -97,7 +99,13 @@ export default function RoomDesigner({ types, themes, ...props }) {
       const imageUrl = await uploadImageToFirebase(selectedFile);
 
       // Generate new room image
-      const result = await generateRoomImage(userData.uid, selectedRoomType.id, selectedTheme.id, imageUrl)
+      const result = await generateRoomImage(
+        userData.uid,
+        selectedSource.id,
+        selectedRoomType.id,
+        selectedTheme.id,
+        imageUrl
+      )
         .then((data) => {
           setGeneratedImage(data);
           toast.success("Image saved to your gallery.");
@@ -154,9 +162,16 @@ export default function RoomDesigner({ types, themes, ...props }) {
               <h1 className="text-3xl font-semibold lg:text-2xl md:text-xl">{props.title}</h1>
 
               <div className="mt-12 lg:mt-6">
-                <h4 className="mb-1 lg:text-sm">Type</h4>
-                <Dropdown options={types} selectedOption={selectedRoomType} setSelectedOption={setSelectedRoomType} />
+                <h4 className="mb-1 lg:text-sm">Photo Source</h4>
+                <Dropdown options={sources} selectedOption={selectedSource} setSelectedOption={setSelectedSource} />
               </div>
+
+              {selectedSource.id !== "architecture" && (
+                <div className="mt-6 lg:mt-6">
+                  <h4 className="mb-1 lg:text-sm">Type</h4>
+                  <Dropdown options={types} selectedOption={selectedRoomType} setSelectedOption={setSelectedRoomType} />
+                </div>
+              )}
 
               <div className="mt-8">
                 <h4 className="mb-2 lg:text-sm">Theme</h4>
@@ -167,12 +182,31 @@ export default function RoomDesigner({ types, themes, ...props }) {
                       className="flex flex-col items-center justify-center cursor-pointer"
                       onClick={() => setSelectedTheme(theme)}
                     >
-                      <img
-                        src={theme.imageUrl}
-                        className={`w-[100px] h-20 lg:w-[80px] lg:h-16 md:w-[60px] md:h-12 object-cover rounded-lg border-2 transition-all duration-150 ${
-                          selectedTheme.id === theme.id && "border-teal-600"
-                        }`}
-                      />
+                      {theme.source !== "icon" && (
+                        <img
+                          src={theme.imageUrl}
+                          className={`w-[100px] h-20 lg:w-[80px] lg:h-16 md:w-[60px] md:h-12 object-cover rounded-lg border-2 transition-all duration-150 ${
+                            selectedTheme.id === theme.id && "border-teal-600"
+                          }`}
+                        />
+                      )}
+
+                      {theme.source === "icon" && (
+                        <div
+                          className={`flex items-center justify-center overflow-hidden w-[100px] h-[76px] lg:w-[80px] lg:h-16 md:w-[60px] md:h-12 object-cover rounded-lg border-2 transition-all duration-150 ${
+                            selectedTheme.id === theme.id && "border-teal-600"
+                          }`}
+                        >
+                          <ReactCountryFlag
+                            svg
+                            countryCode={theme.countryCode}
+                            style={{
+                              fontSize: "6em",
+                              lineHeight: "12em",
+                            }}
+                          />
+                        </div>
+                      )}
 
                       <div className="flex items-center justify-center">
                         <h6
@@ -283,7 +317,7 @@ export default function RoomDesigner({ types, themes, ...props }) {
                           setGeneratedImage(null);
                         }}
                       >
-                        New Room
+                        Clear
                       </button>
 
                       <button className="btn btn-primary text-white px-6" onClick={publishHandler}>

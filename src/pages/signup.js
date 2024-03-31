@@ -10,8 +10,10 @@ import { createUser, isUserExist } from "@/utils/api";
 import Navbar from "../components/navbar";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
+import { useAuth } from "@/contexts/authContext";
 
 export default function Signup() {
+  const { currentUser } = useAuth();
   const [name, setName] = useState("");
   const [nameHasError, setNameHasError] = useState(false);
   const [email, setEmail] = useState("");
@@ -146,11 +148,15 @@ export default function Signup() {
           });
       })
       .catch((e) => {
-        if (e.code !== "auth/cancelled-popup-request" || e.code !== "auth/popup-closed-by-user") {
-          toast.error("Oops! Something went wrong during sign up. Please try again.");
-        }
+        if (e.code === "auth/cancelled-popup-request" || e.code === "auth/popup-closed-by-user") return;
+        toast.error("Oops! Something went wrong during sign up. Please try again.");
       });
   };
+
+  if (currentUser) {
+    router.push("/explore");
+    return;
+  }
 
   return (
     <>

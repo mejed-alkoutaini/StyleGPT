@@ -2,7 +2,7 @@ import firebase, { googleProvider } from "../utils/firebase";
 import { useRouter } from "next/router";
 import { GoogleIcon } from "../components/svgs";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isValidEmail, isValidPassword } from "@/utils/utils";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-hot-toast";
@@ -11,8 +11,10 @@ import DefaultLayout from "@/components/defaultLayout";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/navbar";
+import { useAuth } from "@/contexts/authContext";
 
 export default function Login() {
+  const { currentUser } = useAuth();
   const [email, setEmail] = useState("");
   const [emailHasError, setEmailHasError] = useState(false);
   const [password, setPassword] = useState("");
@@ -102,12 +104,15 @@ export default function Login() {
           });
       })
       .catch((e) => {
-        console.log(e);
-        if (e.code !== "auth/cancelled-popup-request" || e.code !== "auth/popup-closed-by-user") {
-          toast.error("Oops! Something went wrong during sign up. Please try again.");
-        }
+        if (e.code === "auth/cancelled-popup-request" || e.code === "auth/popup-closed-by-user") return;
+        toast.error("Oops! Something went wrong during sign up. Please try again.");
       });
   };
+
+  if (currentUser) {
+    router.push("/explore");
+    return;
+  }
 
   return (
     <>

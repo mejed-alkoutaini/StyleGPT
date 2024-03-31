@@ -4,6 +4,7 @@ import Testimonials from "@/components/homePage/testimonials";
 import { useUserData } from "@/contexts/userDataContext";
 import { createTransaction } from "@/utils/api";
 import { CheckIcon } from "@heroicons/react/24/outline";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
@@ -14,12 +15,7 @@ const plans = [
     name: "Free",
     cost: "0$",
     description: "Basic access with essential credits. Ideal for starters.",
-    features: [
-      "3 Credits",
-      "+30 Room Types",
-      "+30 Room Themes",
-      "Coming Soon: Search by Product",
-    ],
+    features: ["3 Credits", "+30 Room Types", "+30 Room Themes", "Coming Soon: Search by Product"],
   },
   {
     id: 1,
@@ -104,6 +100,10 @@ export default function Pricing() {
 
   return (
     <>
+      <Head>
+        <title>Pricing | StyleGPT</title>
+      </Head>
+
       <div className="flex items-center justify-center w-full pt-16 pb-24 md:pt-16 md:pb overflow-hidden">
         <div className="flex flex-col items-center w-full max-w-[1400px] mx-auto lg:px-10 lg:flex-col md:px-0">
           <div className="flex flex-col items-center max-w-[612px] md:px-5">
