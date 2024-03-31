@@ -13,11 +13,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
       <Head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32x32.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/favicon-32x32.png" color="#5bbad5" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+        <link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/x-icon" sizes="16x16" href="/favicon.png" />
+
+        <link rel="mask-icon" href="/favicon.png" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
