@@ -83,6 +83,7 @@ export default function Login() {
       .auth()
       .signInWithPopup(googleProvider)
       .then(async ({ user }) => {
+        setIsButtonLoading(true);
         const { uid, email, photoURL, displayName } = user;
 
         const userExist = await isUserExist(uid).then((userData) => {
@@ -90,29 +91,40 @@ export default function Login() {
         });
 
         if (userExist) {
+          console.log("user exist");
           router.push(redirectParams || "/explore");
-
+          setIsButtonLoading(false);
           return;
         }
 
         createUser(uid, email, photoURL, displayName)
           .then(() => {
+            console.log("user Created");
             router.push(redirectParams || "/explore");
           })
           .catch((e) => {
             toast.error("Oops! Something went wrong during sign up. Please try again.");
+            setIsButtonLoading(false);
           });
       })
       .catch((e) => {
         if (e.code === "auth/cancelled-popup-request" || e.code === "auth/popup-closed-by-user") return;
         toast.error("Oops! Something went wrong during sign up. Please try again.");
+      })
+      .finally(() => {
+        setIsButtonLoading(false);
       });
   };
 
-  if (currentUser) {
-    router.push("/explore");
-    return;
-  }
+  useEffect(() => {
+    if (isButtonLoading) return;
+
+    if (currentUser && currentUser.emailVerified) {
+      router.push("/explore");
+    } else if (currentUser && !currentUser.emailVerified) {
+      router.push("/verify-email");
+    }
+  }, []);
 
   return (
     <>

@@ -22,7 +22,7 @@ const plans = [
     name: "Trail",
     cost: "4.98$",
     taxInfo: "Exc. tax",
-    priceId: "pri_01ht3zpg2fcnrd2fgg09fm4w5r",
+    priceId: "pri_01htg55xtjq9kf7vf97sjr3f87",
     description: "Extended credits for full exploration. No risk.",
     features: [
       "30 Credits",
@@ -38,7 +38,7 @@ const plans = [
     name: "Pro",
     cost: "9.98$",
     taxInfo: "Exc. tax",
-    priceId: "pri_01ht3zq7wbx6aywfx5gp98gqxa",
+    priceId: "pri_01htg57x397dvx3v52t04zww6t",
     description: "Increased credits for professional needs. Enhanced scope.",
     features: [
       "100 Credits",
@@ -54,7 +54,7 @@ const plans = [
     name: "Premium",
     cost: "14.98$",
     taxInfo: "Exc. tax",
-    priceId: "pri_01ht432c7j1hv2hsegab17r34w",
+    priceId: "pri_01htg59arh4c16g42hmw1gvgkj",
     description: "Maximum credits and support. Ultimate access.",
     features: [
       "200 Credits",

@@ -11,9 +11,11 @@ import Navbar from "../components/navbar";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/contexts/authContext";
+import { useUserData } from "@/contexts/userDataContext";
 
 export default function Signup() {
   const { currentUser } = useAuth();
+  const { userData } = useUserData();
   const [name, setName] = useState("");
   const [nameHasError, setNameHasError] = useState(false);
   const [email, setEmail] = useState("");
@@ -124,10 +126,12 @@ export default function Signup() {
   };
 
   const googleAuthHandler = () => {
+    
     firebase
       .auth()
       .signInWithPopup(googleProvider)
       .then(async ({ user }) => {
+        setIsButtonLoading(true);
         const { uid, email, photoURL, displayName } = user;
 
         const userExist = await isUserExist(uid).then((userData) => {
@@ -135,25 +139,34 @@ export default function Signup() {
         });
 
         if (userExist) {
+          console.log("user exist");
           router.push(redirectParams || "/explore");
+          setIsButtonLoading(false);
           return;
         }
 
         createUser(uid, email, photoURL, displayName)
           .then(() => {
+            console.log("user Created");
             router.push(redirectParams || "/explore");
           })
           .catch((e) => {
             toast.error("Oops! Something went wrong during sign up. Please try again.");
+            setIsButtonLoading(false);
           });
       })
       .catch((e) => {
         if (e.code === "auth/cancelled-popup-request" || e.code === "auth/popup-closed-by-user") return;
         toast.error("Oops! Something went wrong during sign up. Please try again.");
+      })
+      .finally(() => {
+        setIsButtonLoading(false);
       });
   };
 
   useEffect(() => {
+    if (isButtonLoading) return;
+
     if (currentUser && currentUser.emailVerified) {
       router.push("/explore");
     } else if (currentUser && !currentUser.emailVerified) {

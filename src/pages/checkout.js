@@ -25,6 +25,7 @@ export default function Checkout() {
     }, 1000);
     toast.success("Your Credits Have Been Added 🎉");
   };
+
   useEffect(() => {
     if (!transactionId) {
       router.push("/");
@@ -32,7 +33,7 @@ export default function Checkout() {
     }
 
     initializePaddle({
-      environment: "sandbox",
+      // environment: "sandbox",
       token: paddleToken,
       eventCallback: async function (data) {
         if (data.name == "checkout.completed") {
