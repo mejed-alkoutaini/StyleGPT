@@ -118,13 +118,13 @@ const Navbar = () => {
 
             {currentUser && (
               <>
-                <Link
+                {/* <Link
                   href={"/pricing"}
                   className="border-[1px] rounded-md py-2 px-4 font-medium text-primary text-sm flex items-center gap-2 md:px-2"
                 >
                   {userData?.credit} Credits
                   {userData?.credit <= 0 && <PlusCircleIcon width={24} height={24} />}
-                </Link>
+                </Link> */}
 
                 <div className="dropdown dropdown-end ">
                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -140,11 +140,11 @@ const Navbar = () => {
                     tabIndex={0}
                     className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
                   >
-                    <li>
+                    {/* <li>
                       <Link href={"/pricing"} className="py-2 text-base">
                         Billing
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <a className="py-2 text-base" onClick={logoutHandler}>
                         Logout

@@ -14,7 +14,7 @@ export const generateRoomImage = async (uid, selectedSource, roomType, roomTheme
         roomTheme,
         image: imageUrl,
         resolution: "512",
-        test: ENV === "development",
+        // test: ENV === "development",
       },
     });
 
@@ -160,6 +160,21 @@ export const createTransaction = async (priceId, email) => {
     return result.data;
   } catch (error) {
     console.error("Error create transaction", error);
+    throw error.response.data;
+  }
+};
+
+export const getProductSearch = async (url) => {
+  try {
+    const result = await axios({
+      url: `/api/productSearch?url=${url}`,
+      method: "GET",
+      
+    });
+
+    return result.data;
+  } catch (error) {
+    console.error("Error getting product searches", error);
     throw error.response.data;
   }
 };

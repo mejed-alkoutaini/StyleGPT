@@ -90,10 +90,10 @@ export default function RoomDesigner({ types, themes, sources, ...props }) {
     setIsPublished(false);
 
     try {
-      if (userData.credit <= 0) {
-        toast.error("No credits available");
-        return;
-      }
+      // if (userData.credit <= 0) {
+      //   toast.error("No credits available");
+      //   return;
+      // }
 
       // Get the URL of the uploaded image
       const imageUrl = await uploadImageToFirebase(selectedFile);

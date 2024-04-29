@@ -11,11 +11,9 @@ import Navbar from "../components/navbar";
 import Head from "next/head";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/contexts/authContext";
-import { useUserData } from "@/contexts/userDataContext";
 
 export default function Signup() {
   const { currentUser } = useAuth();
-  const { userData } = useUserData();
   const [name, setName] = useState("");
   const [nameHasError, setNameHasError] = useState(false);
   const [email, setEmail] = useState("");
