@@ -15,6 +15,7 @@ export default function VerifyEmail() {
   const searchParams = useSearchParams();
   const redirectParams = searchParams.get("redirect");
 
+  // Redirects user if not logged in or email is already verified
   useEffect(() => {
     if (!currentUser) {
       router.push("/login");
@@ -25,17 +26,17 @@ export default function VerifyEmail() {
     }
   }, [currentUser]);
 
+  // Handles resending the verification email
   const handleResendVerificationEmail = async () => {
     if (isSendingEmail) return;
 
     try {
       setIsSendingEmail(true);
       await firebase.auth().currentUser.sendEmailVerification();
-
       toast.success("Email sent successfully");
-      setIsSendingEmail(false);
     } catch (error) {
       toast.error("Error sending verification email, Please try again.");
+    } finally {
       setIsSendingEmail(false);
     }
   };
@@ -75,6 +76,7 @@ export default function VerifyEmail() {
   );
 }
 
+// Sets the layout for the VerifyEmail page
 VerifyEmail.getLayout = function getLayout(page) {
   return <DefaultLayout>{page}</DefaultLayout>;
 };

@@ -31,6 +31,7 @@ export default function RoomDesigner({ types, themes, sources, ...props }) {
   const [isPublished, setIsPublished] = useState(false);
   const router = useRouter();
 
+  // Handles the selection of an image file
   const selectImageHandler = (file) => {
     if (file) {
       setSelectedFile(file);
@@ -47,6 +48,7 @@ export default function RoomDesigner({ types, themes, sources, ...props }) {
     }
   };
 
+  // Uploads the selected image to Firebase storage
   const uploadImageToFirebase = async (file) => {
     const fileName = `${userData.uid}_${uuidGenerator()}`;
     const uploadTask = storage.ref(`rooms/${fileName}`).put(file);
@@ -64,6 +66,7 @@ export default function RoomDesigner({ types, themes, sources, ...props }) {
     }
   };
 
+  // Handles the generation of the room image
   const generateHandler = async () => {
     if (!selectedFile) {
       toast("Please select an image", {
@@ -90,11 +93,6 @@ export default function RoomDesigner({ types, themes, sources, ...props }) {
     setIsPublished(false);
 
     try {
-      // if (userData.credit <= 0) {
-      //   toast.error("No credits available");
-      //   return;
-      // }
-
       // Get the URL of the uploaded image
       const imageUrl = await uploadImageToFirebase(selectedFile);
 
@@ -122,6 +120,7 @@ export default function RoomDesigner({ types, themes, sources, ...props }) {
     }
   };
 
+  // Handles the publishing of the generated image
   const publishHandler = async () => {
     setIsPublishing(true);
 
@@ -136,6 +135,7 @@ export default function RoomDesigner({ types, themes, sources, ...props }) {
     }
   };
 
+  // Handles the downloading of the generated image
   const downloadHandler = async () => {
     try {
       const response = await axios.get(generatedImage.image, { responseType: "blob" });

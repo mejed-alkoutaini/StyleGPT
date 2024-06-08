@@ -12,6 +12,7 @@ const DefaultLayout = (props) => {
   const { userData, setUserData } = useUserData();
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetches user data from the API
   const getUserData = async () => {
     try {
       setIsLoading(true);
@@ -30,6 +31,7 @@ const DefaultLayout = (props) => {
     }
   };
 
+  // Fetches user data when the component mounts or when currentUser changes
   useEffect(() => {
     if (!currentUser || currentUser?.email === userData?.email) {
       setIsLoading(false);
@@ -39,6 +41,7 @@ const DefaultLayout = (props) => {
     getUserData();
   }, [currentUser]);
 
+  // Displays a full-screen loader while data is being fetched
   if (isLoading) return <FullScreenLoader />;
 
   return (

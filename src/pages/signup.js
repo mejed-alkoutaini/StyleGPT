@@ -18,7 +18,7 @@ export default function Signup() {
   const [nameHasError, setNameHasError] = useState(false);
   const [email, setEmail] = useState("");
   const [emailHasError, setEmailHasError] = useState(false);
-  const [password, setPassowrd] = useState("");
+  const [password, setPassword] = useState("");
   const [passwordHasError, setPasswordHasError] = useState(false);
   const [repeatPassword, setRepeatPassword] = useState("");
   const [repeatPasswordHasError, setRepeatPasswordHasError] = useState(false);
@@ -30,6 +30,7 @@ export default function Signup() {
   const searchParams = useSearchParams();
   const redirectParams = searchParams.get("redirect");
 
+  // Handles changes in the name input field
   const nameChangeHandler = (e) => {
     const value = e.target.value;
     setName(value);
@@ -39,6 +40,7 @@ export default function Signup() {
     }
   };
 
+  // Handles changes in the email input field
   const emailChangeHandler = (e) => {
     const value = e.target.value;
     setEmail(value);
@@ -48,15 +50,17 @@ export default function Signup() {
     }
   };
 
+  // Handles changes in the password input field
   const passwordChangeHandler = (e) => {
     const value = e.target.value;
-    setPassowrd(value);
+    setPassword(value);
 
     if (checkErrors) {
       isValidPassword(value) ? setPasswordHasError(false) : setPasswordHasError(true);
     }
   };
 
+  // Handles changes in the repeat password input field
   const repeatPasswordChangeHandler = (e) => {
     const value = e.target.value;
     setRepeatPassword(value);
@@ -66,10 +70,12 @@ export default function Signup() {
     }
   };
 
+  // Toggles the visibility of the password input fields
   const togglePasswordVisibility = (field) => {
     field === "password" ? setShowPassword(!showPassword) : setShowRepeatPassword(!showRepeatPassword);
   };
 
+  // Handles the signup process when the form is submitted
   const signupHandler = (e) => {
     e.preventDefault();
     if (isButtonLoading) return;
@@ -123,8 +129,8 @@ export default function Signup() {
     }
   };
 
+  // Handles Google authentication
   const googleAuthHandler = () => {
-    
     firebase
       .auth()
       .signInWithPopup(googleProvider)
@@ -162,6 +168,7 @@ export default function Signup() {
       });
   };
 
+  // Redirects user if they are already logged in
   useEffect(() => {
     if (isButtonLoading) return;
 

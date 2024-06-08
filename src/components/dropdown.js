@@ -1,8 +1,8 @@
 const Dropdown = ({ selectedOption, setSelectedOption, options }) => {
+  // Handles the change event of the dropdown
   const handleChange = (event) => {
     const selectedOptionObject = options.find((option) => option.id === event.target.value);
-
-    setSelectedOption(selectedOptionObject);
+    setSelectedOption(selectedOptionObject); // Sets the selected option based on the change
   };
 
   return (

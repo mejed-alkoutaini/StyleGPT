@@ -26,6 +26,7 @@ export default function MyRooms() {
   const [isLoading, setIsLoading] = useState(true);
   const windowSize = useWindowSize();
 
+  // Fetches the user's images from the API and updates the state
   const getData = async () => {
     setIsLoading(true);
 
@@ -35,10 +36,12 @@ export default function MyRooms() {
     setIsLoading(false);
   };
 
+  // Calls getData when the component mounts to fetch images
   useEffect(() => {
     getData();
   }, []);
 
+  // Toggles the visibility of mobile filters based on window size
   useEffect(() => {
     if (windowSize.width > 767) {
       setShowMobileFilters(true);
@@ -47,11 +50,13 @@ export default function MyRooms() {
     }
   }, [windowSize]);
 
+  // Handles the event when an image is clicked to show it in full screen
   const fullScreenHandler = (image) => {
     setImageToShow(image);
     setShowFullScreen(true);
   };
 
+  // Filters the images based on selected type and theme filters
   useEffect(() => {
     const filterImages = () => {
       const filteredImages = roomsImages.filter(
@@ -66,6 +71,7 @@ export default function MyRooms() {
     filterImages();
   }, [roomsImages, selectedThemeFilter, selectedTypeFilter]);
 
+  // Publishes or unpublishes an image
   const publishHandler = async () => {
     try {
       await publishImage(imageToShow.id, !imageToShow.published);
@@ -81,6 +87,7 @@ export default function MyRooms() {
     }
   };
 
+  // Downloads the selected image
   const downloadHandler = async () => {
     try {
       const response = await axios.get(imageToShow.after, { responseType: "blob" });
@@ -228,6 +235,7 @@ export default function MyRooms() {
   );
 }
 
+// Sets the layout for the MyRooms page
 MyRooms.getLayout = function getLayout(page) {
   return (
     <WithProtectedRoute>

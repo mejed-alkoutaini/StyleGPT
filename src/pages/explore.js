@@ -12,6 +12,7 @@ export default function Explore() {
   const [imageToShow, setImageToShow] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetches the explore images from the API and updates the state
   const getData = async () => {
     setIsLoading(true);
 
@@ -21,15 +22,18 @@ export default function Explore() {
     setIsLoading(false);
   };
 
+  // Calls getData when the component mounts to fetch images
   useEffect(() => {
     getData();
   }, []);
 
+  // Handles the event when an image is clicked to show it in full screen
   const fullScreenHandler = (image) => {
     setImageToShow(image);
     setShowFullScreen(true);
   };
 
+  // Shows a full screen loader while the data is loading
   if (isLoading) return <FullScreenLoader />;
 
   return (

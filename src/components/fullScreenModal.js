@@ -41,11 +41,14 @@ const FullScreenModal = (props) => {
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [searchResults, setSearchResults] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
-  console.log(props)
+  console.log(props);
+
+  // Handles image load and sets dimensions
   const handleImageLoad = (event) => {
     setDimensions({ width: imageRef.current.offsetWidth, height: imageRef.current.offsetHeight });
   };
 
+  // Gets cropped data and performs a product search
   const getCropData = async () => {
     setIsSearching(true);
 
@@ -58,7 +61,6 @@ const FullScreenModal = (props) => {
       }
       croppedCanvas.toBlob(async (blob) => {
         const url = await uploadImageToFirebase(blob);
-        // console.log("Image uploaded to Firebase:", encodeURIComponent(url));
 
         const productSearches = await getProductSearch(encodeURIComponent(url));
         console.log(productSearches);
@@ -70,6 +72,7 @@ const FullScreenModal = (props) => {
     }
   };
 
+  // Uploads image to Firebase storage
   const uploadImageToFirebase = async (file) => {
     const fileName = `${user.currentUser.uid}_${uuidGenerator()}`;
     const uploadTask = storage.ref(`croppedImages/${fileName}`).put(file);
@@ -87,6 +90,7 @@ const FullScreenModal = (props) => {
     }
   };
 
+  // Updates image dimensions when the modal is active
   useEffect(() => {
     if (!active) return;
     handleImageLoad();
@@ -133,7 +137,7 @@ const FullScreenModal = (props) => {
           >
             <img src={imageAfter} className="fullScreenImage" ref={imageRef} />
           </div>
-          
+
           {comparison && (
             <ReactCompareSlider
               className={`bg-rd select-none w-[${dimensions.width}px] h-[${dimensions.height}px]`}

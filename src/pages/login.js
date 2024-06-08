@@ -25,22 +25,26 @@ export default function Login() {
   const searchParams = useSearchParams();
   const redirectParams = searchParams.get("redirect");
 
+  // Handles changes in the email input field
   const emailChangeHandler = (e) => {
     const value = e.target.value;
     setEmail(value);
     setEmailHasError(false); // Reset error on change
   };
 
+  // Handles changes in the password input field
   const passwordChangeHandler = (e) => {
     const value = e.target.value;
     setPassword(value);
     setPasswordHasError(false); // Reset error on change
   };
 
+  // Toggles the visibility of the password input field
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  // Handles the login process when the form is submitted
   const loginHandler = (e) => {
     e.preventDefault();
     if (isButtonLoading) return;
@@ -78,6 +82,7 @@ export default function Login() {
     }
   };
 
+  // Handles Google authentication
   const googleAuthHandler = () => {
     firebase
       .auth()
@@ -116,6 +121,7 @@ export default function Login() {
       });
   };
 
+  // Redirects user if they are already logged in
   useEffect(() => {
     if (isButtonLoading) return;
 
